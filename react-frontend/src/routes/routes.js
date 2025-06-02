@@ -14,6 +14,7 @@ import Home from '~/pages/Customer/Home/Home';
 import MenuManagement from '~/pages/Admin/MenuManagement';
 import EmployeeManagement from '~/pages/Admin/EmployeeManagement';
 import AdminOrderManagement from '~/pages/Admin/OrderManagement';
+import Dashboard from '~/pages/Admin/Dashboard';
 
 const publicRoutes = [
     // Customer Routes
@@ -23,6 +24,12 @@ const publicRoutes = [
 const privateRoutes = [
     // Employee Routes
     // Admin Routes
+    {
+        path: config.routes.adminRoutes.dashboard,
+        component: Dashboard,
+        layout: AdminLayout,
+        roles: ['ADMIN'],
+    },
     {
         path: config.routes.adminRoutes.menuManagement,
         component: MenuManagement,

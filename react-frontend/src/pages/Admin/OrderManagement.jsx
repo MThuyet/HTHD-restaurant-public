@@ -1,7 +1,5 @@
-import TableOrder from '~/components/Admin/OrderManagement/TableOrder';
-
 const OrderManagement = () => {
-    return <TableOrder />;
+    return <div>Quản lý đơn hàng</div>;
 };
 
 export default OrderManagement;

@@ -1,6 +1,5 @@
-import TableEmployee from '~/components/Admin/EmployeeManagement/TableEmployee';
 const EmployeeManagement = () => {
-    return <TableEmployee />;
+    return <p>Quản lý nhân viên</p>;
 };
 
 export default EmployeeManagement;
