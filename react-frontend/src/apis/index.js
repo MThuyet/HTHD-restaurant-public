@@ -1,6 +1,8 @@
 import authorizedAxiosInstance from '~/utils/authorizeAxios';
+import { API_URL } from '~/utils/constants';
 
-export const loginAPI = async () => {
-    const response = await authorizedAxiosInstance.get('/login');
+// định nghĩa các api ở đây
+export const testAPI = async () => {
+    const response = await authorizedAxiosInstance.get(`${API_URL}/test`);
     return response.data;
 };

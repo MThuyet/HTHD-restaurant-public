@@ -39,7 +39,6 @@ authorizedAxiosInstance.interceptors.response.use(
         let errorMessage = error?.response?.data?.message || error?.message;
         // ngoại trừ status lỗi 410 (GONE) phục vụ việc tự refresh lại token
         if (error.response?.status !== 410) {
-            if (error.response?.status === 500) errorMessage = 'Có lỗi phía server! Vui lòng thử lại sau';
             toast.error(errorMessage || 'Có lỗi xảy ra!');
         }
 
