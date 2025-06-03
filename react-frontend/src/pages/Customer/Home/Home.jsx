@@ -40,7 +40,9 @@ const Home = () => {
         <div>
             Click để call API
             <p>{data}</p>
-            <Button onClick={handleClick}>Click</Button>
+            <Button className="interceptor-loading" onClick={handleClick}>
+                Click
+            </Button>
         </div>
     );
 };
