@@ -37,7 +37,7 @@ body {
     font-size: 13px;
     line-height: 1.5;
     color: var(--text-color);
-    font-family: var(--font-family);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 button,
@@ -69,4 +69,67 @@ a {
 
 ::-webkit-resizer {
     height: 4px;
+}
+
+.LoginPage {
+    margin-top: 5px;
+    margin-right: 5px;
+}
+.LoginLogo__name--margin {
+    margin-top: 5px;
+}
+
+.LoginLogo__img--margin {
+    margin: 0 5px 0 0;
+    border-radius: 20%;
+}
+.LoginForm__title,
+.LoginForm__message,
+.LoginForm__username,
+.LoginForm__password,
+.LoginForm__btn {
+    margin: 5px 0 0 10px;
+}
+.LoginForm__message,
+.LoginForm__username,
+.LoginForm__password,
+.LoginForm__btn {
+    color: var(--text-color);
+}
+.LoginForm__title {
+    color: var(--primary);
+}
+.LoginForm__title,
+.LoginForm__message,
+.LoginForm__info {
+    margin-top: 30px;
+}
+.LoginForm__username__input__box,
+.LoginForm__password__input__box {
+    margin-bottom: 5px;
+    background-color: var(--white-blue);
+}
+.LoginForm__username__input,
+.LoginForm__password__input {
+    margin: 10px auto 0 10px;
+}
+.LoginForm__username__label__icon {
+    padding-right: 7px;
+}
+
+.LoginForm__btn {
+    margin-top: 25px;
+}
+.LoginForm__btn__login--color {
+    margin-right: 40px;
+}
+.LoginForm__btn__login--color,
+.LoginForm__btn__forgot--color {
+    background: var(--border-color);
+    color: var(--text-color);
+}
+.LoginForm__btn__login--color:hover,
+.LoginForm__btn__forgot--color:hover {
+    background-color: var(--primary);
+    color: #fff;
 }
