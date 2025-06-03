@@ -1,4 +1,4 @@
-import config from '~/config';
+import routes from '~/config/routes';
 
 /* Layouts */
 import EmployeeLayout from '~/layouts/EmployeeLayout/EmployeeLayout';
@@ -18,32 +18,32 @@ import Dashboard from '~/pages/Admin/Dashboard';
 
 const publicRoutes = [
     // Customer Routes
-    { path: config.routes.customerRoutes.home, component: Home },
+    { path: routes.customerRoutes.home, component: Home },
 ];
 
 const privateRoutes = [
     // Employee Routes
     // Admin Routes
     {
-        path: config.routes.adminRoutes.dashboard,
+        path: routes.adminRoutes.dashboard,
         component: Dashboard,
         layout: AdminLayout,
         roles: ['ADMIN'],
     },
     {
-        path: config.routes.adminRoutes.menuManagement,
+        path: routes.adminRoutes.menuManagement,
         component: MenuManagement,
         layout: AdminLayout,
         roles: ['ADMIN'],
     },
     {
-        path: config.routes.adminRoutes.orderManagement,
+        path: routes.adminRoutes.orderManagement,
         component: AdminOrderManagement,
         layout: AdminLayout,
         roles: ['ADMIN'],
     },
     {
-        path: config.routes.adminRoutes.employeeManagement,
+        path: routes.adminRoutes.employeeManagement,
         component: EmployeeManagement,
         layout: AdminLayout,
         roles: ['ADMIN'],

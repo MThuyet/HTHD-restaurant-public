@@ -12,46 +12,46 @@ import {
 } from '@ant-design/icons';
 import { Button, ConfigProvider, Layout, Menu, Typography, Avatar, Dropdown } from 'antd';
 import viVN from 'antd/locale/vi_VN';
-import logoTemp from '~/assets/admin/logoTemp.png';
+import logo from '~/assets/admin/logo.webp';
 
-import config from '~/config';
+import routes from '~/config/routes';
 
 const { Header, Sider, Content } = Layout;
 
 // danh sách menu sidebar
 const items = [
     {
-        key: config.routes.adminRoutes.dashboard,
+        key: routes.adminRoutes.dashboard,
         icon: <AppstoreOutlined />,
         label: (
-            <Link className="font-[500]" to={config.routes.adminRoutes.dashboard}>
+            <Link className="font-[500]" to={routes.adminRoutes.dashboard}>
                 Bảng điều khiển
             </Link>
         ),
     },
     {
-        key: config.routes.adminRoutes.employeeManagement,
+        key: routes.adminRoutes.employeeManagement,
         icon: <UserOutlined />,
         label: (
-            <Link className="font-[500]" to={config.routes.adminRoutes.employeeManagement}>
+            <Link className="font-[500]" to={routes.adminRoutes.employeeManagement}>
                 Quản lý nhân viên
             </Link>
         ),
     },
     {
-        key: config.routes.adminRoutes.menuManagement,
+        key: routes.adminRoutes.menuManagement,
         icon: <UnorderedListOutlined />,
         label: (
-            <Link className="font-[500]" to={config.routes.adminRoutes.menuManagement}>
+            <Link className="font-[500]" to={routes.adminRoutes.menuManagement}>
                 Quản lý menu
             </Link>
         ),
     },
     {
-        key: config.routes.adminRoutes.orderManagement,
+        key: routes.adminRoutes.orderManagement,
         icon: <DollarOutlined />,
         label: (
-            <Link className="font-[500]" to={config.routes.adminRoutes.orderManagement}>
+            <Link className="font-[500]" to={routes.adminRoutes.orderManagement}>
                 Quản lý đơn hàng
             </Link>
         ),
@@ -139,10 +139,10 @@ const AdminLayout = ({ children }) => {
                 >
                     <div className={'flex items-center h-16 gap-3 !mb-8 !p-1'}>
                         {collapsed ? (
-                            <img src={logoTemp} alt="logo" className="w-12 object-contain " />
+                            <img src={logo} alt="logo" className="w-12 object-contain rounded-[12px]" />
                         ) : (
                             <div className="flex items-center gap-3">
-                                <img src={logoTemp} alt="logo" className="w-12" />
+                                <img src={logo} alt="logo" className="w-12 rounded-[12px]" />
                                 <span className="font-bold">HTHD Restaurant</span>
                             </div>
                         )}
