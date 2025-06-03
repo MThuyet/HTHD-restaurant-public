@@ -158,7 +158,7 @@ const MenuManagement = () => {
             }}
             rowKey="id"
             search={{
-                resetText: 'Làm mới',
+                resetText: 'Hoàn tác',
                 labelWidth: 'auto',
             }}
             options={{

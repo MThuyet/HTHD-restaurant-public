@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import {
     MenuFoldOutlined,
     MenuUnfoldOutlined,
@@ -14,10 +14,11 @@ import { Button, ConfigProvider, Layout, Menu, Typography, Avatar, Dropdown } fr
 import viVN from 'antd/locale/vi_VN';
 import logoTemp from '~/assets/admin/logoTemp.png';
 
-import config from '../../config';
+import config from '~/config';
 
 const { Header, Sider, Content } = Layout;
 
+// danh sách menu sidebar
 const items = [
     {
         key: config.routes.adminRoutes.dashboard,
@@ -57,49 +58,77 @@ const items = [
     },
 ];
 
-const AdminLayout = ({ children }) => {
-    const [collapsed, setCollapsed] = useState(false);
-    const [activeMenu, setActiveMenu] = useState('');
+// danh sách menu dropdown
+const userMenuItems = [
+    {
+        key: 'profile',
+        icon: <UserOutlined />,
+        label: 'Thông tin tài khoản',
+    },
+    {
+        key: 'settings',
+        icon: <SettingOutlined />,
+        label: 'Cài đặt',
+    },
+    {
+        type: 'divider',
+    },
+    {
+        key: 'logout',
+        icon: <LogoutOutlined style={{ color: 'red' }} />,
+        label: <span style={{ color: 'red' }}>Đăng xuất</span>,
+    },
+];
 
-    const userMenuItems = [
-        {
-            key: 'profile',
-            icon: <UserOutlined />,
-            label: 'Thông tin tài khoản',
+// ghi đè theme gốc của antd
+const configTheme = {
+    token: {
+        colorPrimary: '#C3551A',
+        colorText: '#333',
+    },
+    components: {
+        Menu: {
+            itemSelectedBg: '#C3551A',
+            itemSelectedColor: '#fff',
+            itemHoverBg: 'rgba(195, 85, 26, 0.1)',
+            itemHoverColor: '#C3551A',
+            motionDurationSlow: '0s',
+            motionDurationMid: '0s',
+            motionDurationFast: '0s',
         },
-        {
-            key: 'settings',
-            icon: <SettingOutlined />,
-            label: 'Cài đặt',
-        },
-        {
-            type: 'divider',
-        },
-        {
-            key: 'logout',
-            icon: <LogoutOutlined style={{ color: 'red' }} />,
-            label: <span style={{ color: 'red' }}>Đăng xuất</span>,
-        },
-    ];
+    },
+};
+
+const AdminLayout = ({ children }) => {
+    const location = useLocation();
+
+    const [collapsed, setCollapsed] = useState(false);
+    const [activeMenu, setActiveMenu] = useState(location.pathname);
+
+    // Tìm title dựa trên menu đang được active
+    const getPageTitle = () => {
+        const currentItem = items.find((item) => item.key === activeMenu);
+        // lấy text của component thông qua props.children
+        return currentItem ? currentItem.label.props.children : 'Bảng điều khiển';
+    };
+
+    // Xử lý sự kiện cho user dropdown menu
+    const handleUserMenuClick = ({ key }) => {
+        if (key === 'logout') {
+            // Xử lý đăng xuất
+            console.log('Đăng xuất');
+            // Thêm logic đăng xuất ở đây
+        } else if (key === 'profile') {
+            // Xử lý xem thông tin tài khoản
+            console.log('Xem thông tin tài khoản');
+        } else if (key === 'settings') {
+            // Xử lý mở cài đặt
+            console.log('Mở cài đặt');
+        }
+    };
 
     return (
-        <ConfigProvider
-            locale={viVN}
-            theme={{
-                token: {
-                    colorPrimary: '#C3551A',
-                },
-                components: {
-                    Menu: {
-                        itemSelectedBg: '#C3551A',
-                        itemSelectedColor: '#fff',
-                        motionDurationSlow: '0s',
-                        motionDurationMid: '0s',
-                        motionDurationFast: '0s',
-                    },
-                },
-            }}
-        >
+        <ConfigProvider locale={viVN} theme={configTheme}>
             <Layout>
                 <Sider
                     trigger={null}
@@ -119,7 +148,7 @@ const AdminLayout = ({ children }) => {
                         )}
                     </div>
                     <Menu
-                        selectedKeys={[activeMenu]}
+                        selectedKeys={activeMenu}
                         onClick={(e) => {
                             setActiveMenu(e.key);
                         }}
@@ -139,10 +168,17 @@ const AdminLayout = ({ children }) => {
                                 className="!text-xl !font-[700]"
                             />
                             <Typography.Title level={4} className="text-xl !m-0 !font-[700]">
-                                Bảng điều khiển
+                                {getPageTitle()}
                             </Typography.Title>
                         </div>
-                        <Dropdown menu={{ items: userMenuItems }} trigger={['click']} placement="bottomRight">
+                        <Dropdown
+                            menu={{
+                                items: userMenuItems,
+                                onClick: handleUserMenuClick,
+                            }}
+                            trigger={['click']}
+                            placement="bottomRight"
+                        >
                             <div className="flex items-center gap-2 !mr-2 cursor-pointer">
                                 <Avatar size={40} icon={<UserOutlined />} />
                                 <span className="font-medium">Quang Hưng</span>
