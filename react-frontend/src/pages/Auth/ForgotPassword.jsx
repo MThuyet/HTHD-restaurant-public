@@ -24,11 +24,12 @@ const ForgotPassword = () => {
                         placeholder="Nhập số điện thoại"
                         className="!p-3 max-w-[500px] min-w-[300px] !bg-bgBlue placeholder:text-textPrimary !rounded-none !border-none"
                     />
-                    <button className="!p-3 bg-blue-600 hover:bg-blue-500">Gửi mã</button>
+                    <button className="!p-3 !bg-darkBlue hover:opacity-85 rounded-md text-white font-bold">
+                        Gửi mã
+                    </button>
                 </div>
             </div>
 
-            {/* Mã SMS */}
             <div className="mt-6">
                 <label className="font-medium block mb-2">Mã SMS</label>
                 <div className="flex gap-5">
@@ -36,19 +37,17 @@ const ForgotPassword = () => {
                         <Input
                             key={index}
                             maxLength={1}
-                            className="w-12 h-12 text-center text-xl bg-gray-100"
-                            prefix={index === null ? '' : <MinusOutlined />}
+                            className="w-24 p-4 h-12 text-center text-xl !bg-bgBlue !border-none text-textPrimary"
+                            value="..."
                         />
                     ))}
                 </div>
             </div>
 
-            {/* Nút */}
-
             <div className="flex gap-4 mt-4">
-                <Link to={routes.forgotPasswordRoute}>
+                <Link to={routes.loginRoute}>
                     <button
-                        className="bg-[#F3F3F3] text-black font-bold py-3 px-10 rounded-lg border-none hover:opacity-85"
+                        className="bg-[#F3F3F3] font-bold py-3 px-10 rounded-lg border-none hover:opacity-85"
                         style={{
                             boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)',
                         }}
