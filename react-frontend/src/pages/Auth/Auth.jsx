@@ -1,9 +1,9 @@
-import routes from '~/config/routes';
-
 import { useLocation } from 'react-router-dom';
+import routes from '~/config/routes';
 
 import Login from './Login';
 import ForgotPassword from './ForgotPassword';
+import ResetPassword from './ResetPassword';
 
 import logo from '~/assets/logo.webp';
 import chefImage from '~/assets/auth/imgs/chef/chef.webp';
@@ -12,9 +12,9 @@ import { Typography } from 'antd';
 const Auth = () => {
     const location = useLocation();
 
-    // kiểm tra xem đang ở path nào
     const isLoginPage = location.pathname === routes.loginRoute;
     const isForgotPasswordPage = location.pathname === routes.forgotPasswordRoute;
+    const isResetPasswordPage = location.pathname === routes.resetPasswordRoute;
 
     return (
         <div className="min-w-screen min-h-screen flex md:flex-row flex-col-reverse items-center gap-8">
@@ -28,7 +28,6 @@ const Auth = () => {
                         HTHD Restaurant
                     </Typography.Title>
                 </div>
-
                 <Typography.Title level={2} className="!text-primary !font-[800] !mb-5">
                     {isLoginPage ? 'Đăng nhập' : 'Quên mật khẩu'}
                 </Typography.Title>
@@ -41,9 +40,11 @@ const Auth = () => {
                 <div className="mt-5 w-full">
                     {isLoginPage && <Login />}
                     {isForgotPasswordPage && <ForgotPassword />}
+                    {isResetPasswordPage && <ResetPassword />}
                 </div>
             </div>
         </div>
     );
 };
+
 export default Auth;

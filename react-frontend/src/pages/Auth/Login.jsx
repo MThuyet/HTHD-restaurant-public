@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input, Button } from 'antd';
+import { Input} from 'antd';
 import { UserOutlined, LockOutlined, EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import routes from '~/config/routes';
@@ -14,7 +14,7 @@ const Login = () => {
                 </label>
                 <Input
                     id="username"
-                    className="!p-3 max-w-[500px] min-w-[300px] !bg-bgBlue placeholder:text-textPrimary !focus-within:border-none !rounded-none !border-none"
+                    className="!p-3 max-w-[500px] min-w-[300px] !bg-bgBlue placeholder:text-textPrimary !rounded-none !border-none"
                     placeholder="Nhập tên tài khoản"
                 />
             </div>
@@ -24,7 +24,7 @@ const Login = () => {
                     Mật khẩu
                 </label>
                 <Input.Password
-                    className="!p-3 max-w-[500px] min-w-[300px] !bg-bgBlue placeholder:text-textPrimary !focus-within:border-none  !rounded-none !border-none"
+                    className="!p-3 max-w-[500px] min-w-[300px] !bg-bgBlue placeholder:text-textPrimary  !rounded-none !border-none"
                     id="password"
                     placeholder="Nhập mật khẩu..."
                     iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}

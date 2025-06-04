@@ -23,8 +23,8 @@ const publicRoutes = [
     { path: routes.customerRoutes.home, component: Home },
     { path: routes.loginRoute, component: Auth },
     { path: routes.forgotPasswordRoute, component: Auth },
+    { path: routes.resetPasswordRoute, component: Auth },
 ];
-
 
 const privateRoutes = [
     // Employee Routes

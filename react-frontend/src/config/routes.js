@@ -9,6 +9,7 @@ const routes = {
     /* BEGIN COMMON ROUTES EMPLOYEES & ADMIN */
     loginRoute: '/login',
     forgotPasswordRoute: '/forgot-password',
+    resetPasswordRoute: '/reset-password',
     /* END COMMON ROUTES EMPLOYEES & ADMIN */
 
     /* BEGIN EMPLOYEE ROUTES */
