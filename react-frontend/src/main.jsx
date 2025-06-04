@@ -4,10 +4,11 @@ import React from 'react';
 import App from './App.jsx';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import './global.css';
 
 createRoot(document.getElementById('root')).render(
     <React.Fragment>
         <App />
-        <ToastContainer autoClose={3000} theme="colored" />
+        <ToastContainer autoClose={2000} hideProgressBar />
     </React.Fragment>,
 );

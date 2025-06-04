@@ -12,7 +12,7 @@ import {
 } from '@ant-design/icons';
 import { Button, ConfigProvider, Layout, Menu, Typography, Avatar, Dropdown } from 'antd';
 import viVN from 'antd/locale/vi_VN';
-import logo from '~/assets/admin/logo.webp';
+import logo from '~/assets/logo.webp';
 
 import routes from '~/config/routes';
 
