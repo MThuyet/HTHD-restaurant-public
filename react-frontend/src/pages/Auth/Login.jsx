@@ -5,7 +5,11 @@ const Login = () => {
     return (
         <div className="LoginPage w-205 h-158 float-right">
             <div className="LoginLogo flex flex-row items-center">
-                <img className="LoginLogo-img LoginLogo__img--margin w-10" src="../public/imgs/logo.webp" alt="" />
+                <img
+                    className="LoginLogo-img LoginLogo__img--margin w-10"
+                    src="../src/assets/auth/imgs/logo/logo.webp"
+                    alt=""
+                />
                 <span className="LoginLogo_name LoginLogo__name--margin text-sm font-extrabold">HTHD-Restaurant</span>
             </div>
             <div className="LoginForm">
@@ -26,7 +30,14 @@ const Login = () => {
                         </div>
                     </div>
                     <div className="LoginForm__password flex flex-col">
-                        <label className="LoginForm__password__label  text-sm/5 font-bold">Mật khẩu</label>
+                        <label className="LoginForm__password__label flex flex-row  text-sm/5 font-bold">
+                            <img
+                                className="LoginForm__password__label__icon w-4 h-5"
+                                src="../src/assets/auth/imgs/logo/lockIcon.png"
+                                alt=""
+                            />
+                            Mật khẩu
+                        </label>
                         <div className="LoginForm__password__input__box w-116 h-10 border-1 border-solid border-black rounded-md">
                             <input
                                 className="LoginForm__password__input w-60 "

@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 
 import Login from './Login';
 import ForgotPassword from './ForgotPassword';
+import '~/styles/auth/login.css';
 
 const Auth = () => {
     const location = useLocation();
@@ -11,7 +12,7 @@ const Auth = () => {
     const isForgotPasswordPage = location.pathname === routes.forgotPasswordRoute;
     return (
         <div className="">
-            <img className="float-left w-131 h-161" src="../public/imgs/chef.jpg" alt="" />
+            <img className="float-left w-131 h-161" src="../src/assets/auth/imgs/chef.jpg" alt="" />
             {isLoginPage && <Login />}
             {isForgotPasswordPage && <ForgotPassword />}
         </div>
