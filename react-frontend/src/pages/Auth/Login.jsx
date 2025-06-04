@@ -14,7 +14,7 @@ const Login = () => {
                 </label>
                 <Input
                     id="username"
-                    className="!p-3 !w-2/5 !bg-bgBlue placeholder:text-textPrimary !rounded-none !border-none"
+                    className="!p-3 max-w-[500px] min-w-[300px] !bg-bgBlue placeholder:text-textPrimary !focus-within:border-none !rounded-none !border-none"
                     placeholder="Nhập tên tài khoản"
                 />
             </div>
@@ -24,7 +24,7 @@ const Login = () => {
                     Mật khẩu
                 </label>
                 <Input.Password
-                    className="!p-3 !w-2/5 !bg-bgBlue placeholder:text-textPrimary !rounded-none !border-none"
+                    className="!p-3 max-w-[500px] min-w-[300px] !bg-bgBlue placeholder:text-textPrimary !focus-within:border-none  !rounded-none !border-none"
                     id="password"
                     placeholder="Nhập mật khẩu..."
                     iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}

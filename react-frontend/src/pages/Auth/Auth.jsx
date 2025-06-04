@@ -6,7 +6,7 @@ import Login from './Login';
 import ForgotPassword from './ForgotPassword';
 
 import logo from '~/assets/logo.webp';
-import chefImage from '~/assets/auth/imgs/chef.jpg';
+import chefImage from '~/assets/auth/imgs/chef/chef.webp';
 import { Typography } from 'antd';
 
 const Auth = () => {
@@ -17,11 +17,11 @@ const Auth = () => {
     const isForgotPasswordPage = location.pathname === routes.forgotPasswordRoute;
 
     return (
-        <div className="w-screen h-screen flex items-center overflow-hidden gap-8">
-            <div className="w-4/12 h-full">
-                <img src={chefImage} alt="" className="w-full h-full object-cover" />
+        <div className="min-w-screen min-h-screen flex md:flex-row flex-col-reverse items-center gap-8">
+            <div className="md:w-6/12 md:h-screen">
+                <img src={chefImage} alt="" className="w-full sm:h-screen object-cover" />
             </div>
-            <div className="w-8/12 h-full p-6">
+            <div className="sm:w-8/12 w-full md:h-screen p-6">
                 <div className="mb-12 flex items-center gap-2">
                     <img src={logo} alt="" className="w-14 h-14 rounded-lg " />
                     <Typography.Title level={5} className="!font-[700]">
