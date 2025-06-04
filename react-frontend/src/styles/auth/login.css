@@ -1,0 +1,63 @@
+.LoginPage {
+    margin-top: 5px;
+    margin-right: 5px;
+}
+.LoginLogo__name--margin {
+    margin-top: 5px;
+}
+
+.LoginLogo__img--margin {
+    margin: 0 5px 0 0;
+    border-radius: 20%;
+}
+.LoginForm__title,
+.LoginForm__message,
+.LoginForm__username,
+.LoginForm__password,
+.LoginForm__btn {
+    margin: 5px 0 0 10px;
+}
+.LoginForm__message,
+.LoginForm__username,
+.LoginForm__password,
+.LoginForm__btn {
+    color: var(--text-color);
+}
+.LoginForm__title {
+    color: var(--primary);
+}
+.LoginForm__title,
+.LoginForm__message,
+.LoginForm__info {
+    margin-top: 30px;
+}
+.LoginForm__username__input__box,
+.LoginForm__password__input__box {
+    margin-bottom: 5px;
+    background-color: var(--white-blue);
+}
+.LoginForm__username__input,
+.LoginForm__password__input {
+    margin: 10px auto 0 10px;
+}
+.LoginForm__username__label__icon,
+.LoginForm__password__label__icon {
+    margin: 0 5px 5px 0;
+}
+
+.LoginForm__btn {
+    margin-top: 25px;
+}
+.LoginForm__btn__login--color {
+    margin-right: 40px;
+}
+.LoginForm__btn__login--color,
+.LoginForm__btn__forgot--color {
+    background: var(--border-color);
+    color: var(--text-color);
+}
+.LoginForm__btn__login--color:hover,
+.LoginForm__btn__forgot--color:hover {
+    background-color: var(--primary);
+    color: #fff;
+}
