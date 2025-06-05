@@ -4,6 +4,9 @@ import routes from '~/config/routes';
 import AdminLayout from '~/layouts/AdminLayout/AdminLayout';
 
 /* Pages */
+// Error
+import Errors from '~/pages/Errors/Errors';
+
 // Customer Pages
 import Home from '~/pages/Customer/Home/Home';
 
@@ -23,6 +26,7 @@ const publicRoutes = [
     { path: routes.loginRoute, component: Auth },
     { path: routes.forgotPasswordRoute, component: Auth },
     { path: routes.resetPasswordRoute, component: Auth },
+    { path: '*', component: Errors },
 ];
 
 const privateRoutes = [

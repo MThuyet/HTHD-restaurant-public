@@ -12,6 +12,10 @@ const routes = {
     resetPasswordRoute: '/reset-password',
     /* END COMMON ROUTES EMPLOYEES & ADMIN */
 
+    /* BEGIN COMMON ROUTES ERROR*/
+    errorRoute: '/error',
+    /* END COMMON ROUTES ERROR*/
+
     /* BEGIN EMPLOYEE ROUTES */
     employeeRoutes: {
         menuManagement: '/employee/menu-management',
