@@ -1,13 +1,11 @@
-import { useLocation } from 'react-router-dom';
-import routes from '~/config/routes';
-import Error404 from './Error404';
+import { useNavigate } from 'react-router-dom';
 
 import logo from '~/assets/logo.webp';
 import { Typography } from 'antd';
 
-const Errors = () => {
-    const location = useLocation();
-    const isError404Page = location.pathname === routes.errorRoute;
+const Errors = ({ title = 404, content = 'Không tìm thấy trang' }) => {
+    const navigate = useNavigate();
+
     return (
         <div className="min-w-screen min-h-screen flex-col-reverse items-center gap-8">
             <div className="m-10 mb-12 flex items-center gap-2">
@@ -17,7 +15,19 @@ const Errors = () => {
                 </Typography.Title>
             </div>
             <div className="h-80 flex flex-col justify-center items-center text-center">
-                {isError404Page && <Error404 />}
+                <div>
+                    <h1 className="text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-amber-700 to-orange-400">
+                        {title}
+                    </h1>
+                    <h2 className="mt-10 text-2xl font-extrabold text-black">{content}</h2>
+
+                    <button
+                        onClick={() => navigate('/')}
+                        className="mt-4 px-6 py-2 bg-amber-700 hover:bg-amber-800 text-white font-extrabold rounded shadow"
+                    >
+                        Trở lại trang chủ
+                    </button>
+                </div>
             </div>
         </div>
     );
