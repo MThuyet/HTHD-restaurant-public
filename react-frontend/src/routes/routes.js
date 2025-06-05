@@ -15,15 +15,15 @@ import MenuManagement from '~/pages/Admin/MenuManagement';
 import EmployeeManagement from '~/pages/Admin/EmployeeManagement';
 import AdminOrderManagement from '~/pages/Admin/OrderManagement';
 import Dashboard from '~/pages/Admin/Dashboard';
-import Login from '~/pages/Auth/Login';
-import ForgotPassword from '~/pages/Auth/ForgotPassword';
 import Auth from '~/pages/Auth/Auth';
+import Errors from '~/pages/Errors/Errors';
 
 const publicRoutes = [
     { path: routes.customerRoutes.home, component: Home },
     { path: routes.loginRoute, component: Auth },
     { path: routes.forgotPasswordRoute, component: Auth },
     { path: routes.resetPasswordRoute, component: Auth },
+    { path: routes.errorRoute, component: Errors },
 ];
 
 const privateRoutes = [
