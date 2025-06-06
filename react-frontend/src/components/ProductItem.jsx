@@ -3,8 +3,12 @@ import { Typography } from 'antd';
 import { formatPrice } from '~/utils/formatter';
 import { MdOutlineAccessTime } from 'react-icons/md';
 import { FaPlus } from 'react-icons/fa';
+import ProductDetailsModal from './Modal/ProductDetailsModal';
+import { useState } from 'react';
 
 const ProductItem = ({ product, isOrder = false }) => {
+    const [isOpenDetails, setIsOpenDetails] = useState(false);
+
     return (
         <div
             className={`p-2 rounded-md flex gap-2 items-center justify-center border-[1.5px] ${
@@ -12,7 +16,15 @@ const ProductItem = ({ product, isOrder = false }) => {
             }`}
             style={{ boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)' }}
         >
-            <img src={product.image} alt={product.name} className="w-[90px] object-cover rounded-lg" />
+            <img
+                src={product.image}
+                alt={product.name}
+                className="cursor-pointer w-[90px] object-cover rounded-lg"
+                onClick={() => setIsOpenDetails(true)}
+            />
+
+            {/* Modal Details*/}
+            <ProductDetailsModal product={product} open={isOpenDetails} setOpen={setIsOpenDetails} />
 
             <div className="">
                 <div className="flex flex-col">

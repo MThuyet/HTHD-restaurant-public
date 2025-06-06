@@ -1,9 +1,9 @@
 import { Modal, QRCode, Space } from 'antd';
 import logo from '~/assets/logo.webp';
 
-const ModalQrCode = ({ isOpenModalQrCode, setIsOpenModalQrCode, valueQr }) => {
+const QrCodeModal = ({ isOpenQrCodeModal, setIsOpenQrCodeModal, valueQr }) => {
     return (
-        <Modal open={isOpenModalQrCode} onCancel={() => setIsOpenModalQrCode(false)} footer={null}>
+        <Modal open={isOpenQrCodeModal} onCancel={() => setIsOpenQrCodeModal(false)} footer={null}>
             <div className="flex items-center gap-2 border-b-2 pb-3 border-gray-300">
                 <img src={logo} alt="logo" className="w-12 h-12 rounded-lg" />
                 <span className="text-sm font-bold">HTHD Restaurant</span>
@@ -16,4 +16,4 @@ const ModalQrCode = ({ isOpenModalQrCode, setIsOpenModalQrCode, valueQr }) => {
     );
 };
 
-export default ModalQrCode;
+export default QrCodeModal;

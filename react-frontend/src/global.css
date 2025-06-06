@@ -83,6 +83,9 @@ input,
     height: 4px;
 }
 
+.min-height-scrollbar::-webkit-scrollbar {
+    height: 3px;
+}
 /* Margin cho thanh cuộn không tràn ra ngoài */
 .ant-segmented::-webkit-scrollbar-track {
     box-shadow: inset 0 0 3px #d9d9d9;
