@@ -17,9 +17,6 @@ export const interceptorLoadingElements = (calling) => {
 };
 
 // format price
-export default function FormatPrice({ price }) {
-    return Number(price).toLocaleString('vi-VN', {
-        style: 'currency',
-        currency: 'VND',
-    });
-}
+export const formatPrice = (price) => {
+    return Number(price).toLocaleString('vi-VN');
+};
