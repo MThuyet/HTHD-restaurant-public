@@ -24,7 +24,7 @@ const ForgotPassword = () => {
                         placeholder="Nhập số điện thoại"
                         className="!p-3 max-w-[500px] min-w-[300px] !bg-bgBlue placeholder:text-textPrimary !rounded-none !border-none"
                     />
-                    <button className="!p-3 !bg-darkBlue hover:opacity-85 rounded-md text-white font-bold">
+                    <button className="!p-3 !bg-darkBlue hover:opacity-85 rounded-md text-white text-nowrap font-bold">
                         Gửi mã
                     </button>
                 </div>
