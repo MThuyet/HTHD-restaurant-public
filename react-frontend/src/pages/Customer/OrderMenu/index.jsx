@@ -6,9 +6,9 @@ import ProductItem from '~/components/ProductItem';
 import { IoSearchSharp } from 'react-icons/io5';
 import { FaArrowLeft } from 'react-icons/fa';
 import { FaQrcode } from 'react-icons/fa';
-import { categories, products } from '~/apis/mockData';
+import { alreadyOrdered, categories, currentSelectedItem, products } from '~/apis/mockData';
 import { useState } from 'react';
-import ModalQrCode from './ModalQrCode';
+import QrCodeModal from '~/components/Modal/QrCodeModal';
 import OrderSideBar from './OrderSideBar';
 
 // ghi đè theme gốc của antd
@@ -40,7 +40,7 @@ const options = categories.map((category) => ({
 }));
 
 const OrderMenu = () => {
-    const [isOpenModalQrCode, setIsOpenModalQrCode] = useState(false);
+    const [isOpenQrCodeModal, setIsOpenQrCodeModal] = useState(false);
     const [valueQr, setValueQr] = useState('');
 
     return (
@@ -64,7 +64,7 @@ const OrderMenu = () => {
 
                         <div
                             onClick={() => {
-                                setIsOpenModalQrCode(true);
+                                setIsOpenQrCodeModal(true);
                                 setValueQr({
                                     title: 'Bàn A',
                                     value: 'https://ant.design/',
@@ -107,14 +107,14 @@ const OrderMenu = () => {
                     </div>
                 </div>
                 <div className="w-[30%] border h-full">
-                    <OrderSideBar currentSelectedItem={['1', '2', '3', '4', '5']} alreadyOrdered={['2', '3']} />
+                    <OrderSideBar currentSelectedItem={currentSelectedItem} alreadyOrdered={alreadyOrdered} />
                 </div>
             </div>
 
             {/* Modal Qr Code */}
-            <ModalQrCode
-                isOpenModalQrCode={isOpenModalQrCode}
-                setIsOpenModalQrCode={setIsOpenModalQrCode}
+            <QrCodeModal
+                isOpenQrCodeModal={isOpenQrCodeModal}
+                setIsOpenQrCodeModal={setIsOpenQrCodeModal}
                 valueQr={valueQr}
             />
         </ConfigProvider>

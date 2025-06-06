@@ -6,9 +6,10 @@ import App from './App.jsx';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './global.css';
+import { themeConfig } from './themeConfig.js';
 
 createRoot(document.getElementById('root')).render(
-    <ConfigProvider theme={{ token: { colorPrimary: '#c3551a' } }}>
+    <ConfigProvider theme={themeConfig}>
         <React.Fragment>
             <App />
             <ToastContainer autoClose={2000} hideProgressBar />

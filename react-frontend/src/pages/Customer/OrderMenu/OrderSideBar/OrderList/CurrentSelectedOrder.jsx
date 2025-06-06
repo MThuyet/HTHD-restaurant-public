@@ -12,7 +12,7 @@ const CurrentSelectedOrder = ({ listItem }) => {
             <div className="h-[calc(100vh-350px)] overflow-y-auto px-3">
                 <div className="flex flex-col gap-3 pb-3">
                     {listItem.map((item) => {
-                        return <OrderDetails key={item} data={item} />;
+                        return <OrderDetails key={item.id} data={item} />;
                     })}
                 </div>
             </div>

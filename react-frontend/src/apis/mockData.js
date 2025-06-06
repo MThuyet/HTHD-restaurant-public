@@ -113,16 +113,152 @@ export const products = [
 
 export const categories = ['Gợi ý', 'Combo', 'Khai vị', 'Salad', 'Món Chính', 'Tráng Miệng', 'Đồ Uống', 'Lẩu', 'Súp'];
 
+// Các món đang được chọn, chưa đặt
 export const currentSelectedItem = [
     {
         id: 1,
+        productId: 1,
         name: 'Thịt heo xào hành tây',
         price: 230000,
-        options: {
-            note: 'abc',
-            categories: [],
-        },
+        quantity: 1,
+        note: 'Không hành',
+        options: [
+            {
+                type: 'Thêm thịt',
+                items: [{ name: 'Thịt thêm', quantity: 0.5, price: 50000 }],
+            },
+            {
+                type: 'Độ cay',
+                items: [{ name: 'Nhẹ' }],
+            },
+        ],
+    },
+    {
+        id: 2,
+        productId: 2,
+        name: 'Gà nướng lá chanh',
+        price: 250000,
+        quantity: 2,
+        note: 'Nhiều chanh',
+        options: [
+            {
+                type: 'Món ăn kèm',
+                items: [{ name: 'Cơm trắng', quantity: 1, price: 15000 }],
+            },
+        ],
+    },
+    {
+        id: 3,
+        productId: 5,
+        name: 'Mực chiên giòn',
+        price: 220000,
+        quantity: 1,
+        note: 'Giòn nhiều',
+        options: [
+            {
+                type: 'Nước chấm',
+                items: [{ name: 'Sốt me', quantity: 1, price: 15000 }],
+            },
+            {
+                type: 'Cách chế biến',
+                items: [{ name: 'Chiên giòn' }],
+            },
+            {
+                type: 'Độ cay',
+                items: [{ name: 'Vừa' }],
+            },
+        ],
     },
 ];
 
-export const alreadyOrdered = [];
+// Các món đã đặt, có trạng thái
+export const alreadyOrdered = [
+    {
+        id: 101,
+        productId: 3,
+        name: 'Tôm sú hấp bia',
+        price: 280000,
+        quantity: 2,
+        orderTime: '11:30',
+        status: 'pending', // Chờ tiếp nhận
+        note: 'Tươi sống',
+        options: [
+            {
+                type: 'Rau',
+                items: [{ name: 'Rau thơm', quantity: 1, price: 0 }],
+            },
+        ],
+    },
+    {
+        id: 102,
+        productId: 4,
+        name: 'Bò lúc lắc khoai tây',
+        price: 270000,
+        quantity: 1,
+        orderTime: '11:25',
+        status: 'processing', // Đang chế biến
+        note: 'Bò tái',
+        options: [
+            {
+                type: 'Món ăn kèm',
+                items: [{ name: 'Khoai tây thêm', quantity: 1, price: 30000 }],
+            },
+            {
+                type: 'Mức độ chín',
+                items: [{ name: 'Tái' }],
+            },
+            {
+                type: 'Độ cay',
+                items: [{ name: 'Cay' }],
+            },
+        ],
+    },
+    {
+        id: 103,
+        productId: 6,
+        name: 'Lẩu thái hải sản',
+        price: 350000,
+        quantity: 1,
+        orderTime: '11:15',
+        status: 'served', // Đã phục vụ
+        note: 'Nhiều nấm',
+        options: [
+            {
+                type: 'Mì',
+                items: [{ name: 'Mì thêm', quantity: 1, price: 20000 }],
+            },
+            {
+                type: 'Hải sản',
+                items: [{ name: 'Hải sản thêm', quantity: 1, price: 100000 }],
+            },
+            {
+                type: 'Rau củ',
+                items: [{ name: 'Nấm thêm', quantity: 1, price: 25000 }],
+            },
+            {
+                type: 'Độ cay',
+                items: [{ name: 'Siêu cay' }],
+            },
+        ],
+    },
+    {
+        id: 104,
+        productId: 8,
+        name: 'Ngao hấp sả',
+        price: 180000,
+        quantity: 1,
+        orderTime: '11:10',
+        status: 'cancelled', // Đã hủy
+        note: 'Nhiều sả',
+        options: [
+            {
+                type: 'Rau',
+                items: [{ name: 'Rau thơm', quantity: 1, price: 0 }],
+            },
+            {
+                type: 'Nước chấm',
+                items: [{ name: 'Nước mắm', quantity: 1, price: 0 }],
+            },
+        ],
+    },
+];

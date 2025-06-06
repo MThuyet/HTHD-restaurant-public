@@ -1,4 +1,3 @@
-import { FaConciergeBell } from 'react-icons/fa';
 import { Tabs } from 'antd';
 import AlreadyOrdered from './OrderList/AlreadyOrdered';
 import CurrentSelectedOrder from './OrderList/CurrentSelectedOrder';
