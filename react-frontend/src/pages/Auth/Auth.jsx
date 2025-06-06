@@ -6,8 +6,11 @@ import ForgotPassword from './ForgotPassword';
 import ResetPassword from './ResetPassword';
 
 import logo from '~/assets/logo.webp';
-import chefImage from '~/assets/auth/imgs/chef/chef.webp';
-import { Typography } from 'antd';
+import chefImage1 from '~/assets/auth/imgs/chef/chef1.webp';
+import chefImage2 from '~/assets/auth/imgs/chef/chef2.webp';
+import chefImage3 from '~/assets/auth/imgs/chef/chef3.webp';
+import chefImage4 from '~/assets/auth/imgs/chef/chef4.webp';
+import { Typography, Carousel } from 'antd';
 
 const Auth = () => {
     const location = useLocation();
@@ -18,8 +21,21 @@ const Auth = () => {
 
     return (
         <div className="min-w-screen min-h-screen flex md:flex-row flex-col-reverse items-center gap-8">
-            <div className="md:w-6/12 md:h-screen">
-                <img src={chefImage} alt="" className="w-full sm:h-screen object-cover" />
+            <div className="md:w-6/12 md:h-screen w-full">
+                <Carousel autoplay draggable>
+                    <div>
+                        <img src={chefImage1} alt="chef-1" className="w-full sm:h-screen object-cover" />
+                    </div>
+                    <div>
+                        <img src={chefImage2} alt="chef-2" className="w-full sm:h-screen object-cover" />
+                    </div>
+                    <div>
+                        <img src={chefImage3} alt="chef-3" className="w-full sm:h-screen object-cover" />
+                    </div>
+                    <div>
+                        <img src={chefImage4} alt="chef-4" className="w-full sm:h-screen object-cover" />
+                    </div>
+                </Carousel>
             </div>
             <div className="sm:w-8/12 w-full md:h-screen p-6">
                 <div className="mb-12 flex items-center gap-2">
