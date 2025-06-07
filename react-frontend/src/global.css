@@ -117,3 +117,13 @@ input,
     border-color: var(--dark-blue) !important;
     background-color: var(--white-blue) !important;
 }
+
+/* Ghi đè phần body của Modal */
+.ant-modal-content {
+    padding: 10px !important;
+}
+
+/* Hoặc nếu chỉ muốn bỏ padding cho body */
+.ant-modal-body {
+    padding: 0 !important;
+}

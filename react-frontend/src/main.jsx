@@ -1,6 +1,7 @@
 import { createRoot } from 'react-dom/client';
 import React from 'react';
 import { ConfigProvider } from 'antd';
+import 'simplebar-react/dist/simplebar.min.css';
 
 import App from './App.jsx';
 import { ToastContainer } from 'react-toastify';

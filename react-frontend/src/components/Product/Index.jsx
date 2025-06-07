@@ -21,7 +21,7 @@ const Product = ({ product, isOrder = false }) => {
             <img
                 src={product.image}
                 alt={product.name}
-                className="cursor-pointer w-[90px] object-cover rounded-lg"
+                className="cursor-pointer sm:w-[100px] w-[120px] object-cover rounded-lg"
                 onClick={() => setIsOpenDetails(true)}
             />
 
@@ -30,11 +30,11 @@ const Product = ({ product, isOrder = false }) => {
 
             <div className="">
                 <div className="flex flex-col">
-                    <Typography.Title level={5} className="!text-sm !m-0">
+                    <Typography.Title level={5} className="sm:!text-base !text-[13px]	 !m-0">
                         {product.name}
                     </Typography.Title>
 
-                    <div className="flex items-center text-[10px] font-[500] gap-2 mt-1">
+                    <div className="flex items-center text-[11px] font-[500] gap-2 mt-1">
                         <div className="flex gap-[3px] items-center">
                             <div className="flex gap-[2px]">
                                 <StarFilled className="!text-[#ffff00]" /> {product.star}
@@ -49,25 +49,25 @@ const Product = ({ product, isOrder = false }) => {
                         </div>
                     </div>
 
-                    <div className="mt-1 text-[9px] font-[500] text-[#808080]">{product.description}</div>
+                    <div className="mt-1 text-[11px] font-[500] text-[#808080]">{product.description}</div>
                 </div>
 
-                <div className="flex items-center justify-between mt-2">
-                    <div className="text-primary flex gap-[1px]">
+                <div className="flex items-center justify-between mt-2 flex-wrap ">
+                    <div className="text-primary flex gap-[1px] sm:mb-0 mb-2">
                         <span className="text-[10px] font-[500] underline">đ</span>
                         <p className="font-bold text-xs">{formatPrice(product.price)}</p>
                     </div>
 
                     {isOrder && (
-                        <div className="flex gap-1 text-xs">
+                        <div className="flex sm:gap-1 gap-4 text-xs">
                             <button
-                                className="flex items-center gap-2 font-[500] !text-white bg-[#333333] !px-4 !py-[2px] rounded-md"
+                                className="flex items-center gap-2 font-[500] !text-white bg-[#333333] !px-4 !py-1 rounded-md"
                                 style={{ border: '2px solid #333333' }}
                             >
                                 <FaPlus /> Thêm
                             </button>
                             <button
-                                className="!px-3 !py-[2px] rounded-md font-bold"
+                                className="!px-3 !py-1 rounded-md font-bold"
                                 style={{ border: '2px solid #D9D9D9' }}
                                 onClick={() => setIsOpenCustomOrder(true)}
                             >
