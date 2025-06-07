@@ -3,6 +3,7 @@ import OrderEmpty from '~/components/Orders/OrderEmpty';
 import OrderFooter from '~/components/Orders/OrderFooter';
 import OrderDetails from '~/components/Orders/OrderDetails';
 import OrderedStatus from '~/components/Orders/OrderedStatus';
+import { isMobile } from 'react-device-detect';
 
 const AlreadyOrdered = ({ listItem }) => {
     const [selectedStatus, setSelectedStatus] = useState('pending');
@@ -14,8 +15,12 @@ const AlreadyOrdered = ({ listItem }) => {
         return <OrderEmpty title="Chưa đặt món nào!" description="Vui lòng đặt các món đang chọn" />;
 
     return (
-        <div className="flex flex-col">
-            <div className="h-[calc(100vh-220px)] overflow-y-auto px-3">
+        <div className="flex flex-col bg-white rounded-lg sm:p-0 p-2 max-h-screen">
+            <div
+                className={`${
+                    isMobile ? 'h-[calc(100vh-280px)]' : 'h-[calc(100vh-200px)]'
+                } overflow-y-auto sm:px-3 px-0`}
+            >
                 {/* Dropdown trạng thái */}
                 <OrderedStatus selectedStatus={selectedStatus} onStatusChange={setSelectedStatus} />
 
