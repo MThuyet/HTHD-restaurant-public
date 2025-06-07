@@ -35,7 +35,7 @@ const OrderDetails = ({ isOrdered, data }) => {
     const status = data?.status ? statusOrdered[data.status] : statusOrdered.pending;
 
     return (
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-3 bg-white">
             <div className="border rounded-lg p-3 flex flex-col gap-1 max-w-md">
                 {isOrdered && (
                     <div className="flex items-center justify-between rounded-full font-semibold">
@@ -43,7 +43,6 @@ const OrderDetails = ({ isOrdered, data }) => {
                             <div className={`w-4 h-4 rounded-full ${status.dotColor} border mr-1`}></div>
                             <p className={status.className}>{status.label}</p> - <span>Lúc {data.orderTime}</span>
                         </div>
-                        <FaAngleDown className="text-lg" />
                     </div>
                 )}
                 <div className="flex justify-between items-start">

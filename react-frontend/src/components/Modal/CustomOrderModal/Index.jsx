@@ -1,5 +1,6 @@
 import { ConfigProvider, Modal, Segmented } from 'antd';
 import { useState } from 'react';
+import { isMobile } from 'react-device-detect';
 import { formatPrice } from '~/utils/formatter';
 
 const CustomOrderModal = ({ isOpenCustomOrderModal, setIsOpenCustomOrderModal, product }) => {
@@ -46,21 +47,39 @@ const CustomOrderModal = ({ isOpenCustomOrderModal, setIsOpenCustomOrderModal, p
                 </div>
             </div>
 
-            <div className="flex justify-between mt-3 py-4 border-t-2 items-center">
-                <div className="flex gap-2">
-                    <div className="font-bold text-base">Tổng:</div>
-                    <div className="font-semibold text-primary flex">
-                        <span className="underline text-xs">đ</span>
-                        <div className="text-base">{formatPrice(product.price)}</div>
+            {isMobile ? (
+                <div className="flex flex-col justify-between mt-3 py-4 border-t-2 gap-3">
+                    <div className="flex gap-2">
+                        <div className="font-bold  text-xl">Tổng:</div>
+                        <div className="font-semibold text-primary flex">
+                            <span className="underline text-sm">đ</span>
+                            <div className=" text-xl">{formatPrice(product.price)}</div>
+                        </div>
+                    </div>
+                    <div className="flex gap-3 font-semibold ">
+                        <div className="px-4 cursor-pointer hover:opacity-75 py-[6px] border-2 rounded">Hủy chọn</div>
+                        <div className="px-4 cursor-pointer hover:opacity-75 py-[6px] border-2 border-[#333333] rounded bg-[#333333] text-white">
+                            Thêm vào đơn
+                        </div>
                     </div>
                 </div>
-                <div className="flex gap-3 font-semibold">
-                    <div className="px-4 cursor-pointer hover:opacity-75 py-[6px] border-2 rounded">Hủy chọn</div>
-                    <div className="px-4 cursor-pointer hover:opacity-75 py-[6px] border-2 border-[#333333] rounded bg-[#333333] text-white">
-                        Thêm vào đơn
+            ) : (
+                <div className="flex justify-between mt-3 py-4 border-t-2 items-center">
+                    <div className="flex gap-2">
+                        <div className="font-bold text-base">Tổng:</div>
+                        <div className="font-semibold text-primary flex">
+                            <span className="underline text-xs">đ</span>
+                            <div className="text-base">{formatPrice(product.price)}</div>
+                        </div>
+                    </div>
+                    <div className="flex gap-3 font-semibold">
+                        <div className="px-4 cursor-pointer hover:opacity-75 py-[6px] border-2 rounded">Hủy chọn</div>
+                        <div className="px-4 cursor-pointer hover:opacity-75 py-[6px] border-2 border-[#333333] rounded bg-[#333333] text-white">
+                            Thêm vào đơn
+                        </div>
                     </div>
                 </div>
-            </div>
+            )}
         </Modal>
     );
 };
