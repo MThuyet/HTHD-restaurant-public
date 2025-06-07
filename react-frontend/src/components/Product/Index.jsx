@@ -3,11 +3,13 @@ import { Typography } from 'antd';
 import { formatPrice } from '~/utils/formatter';
 import { MdOutlineAccessTime } from 'react-icons/md';
 import { FaPlus } from 'react-icons/fa';
-import ProductDetailsModal from './Modal/ProductDetailsModal';
+import ProductDetailsModal from '../Modal/ProductDetailsModal/Index';
 import { useState } from 'react';
+import CustomOrderModal from '../Modal/CustomOrderModal/Index';
 
-const ProductItem = ({ product, isOrder = false }) => {
+const Product = ({ product, isOrder = false }) => {
     const [isOpenDetails, setIsOpenDetails] = useState(false);
+    const [isOpenCustomOrder, setIsOpenCustomOrder] = useState(false);
 
     return (
         <div
@@ -67,9 +69,17 @@ const ProductItem = ({ product, isOrder = false }) => {
                             <button
                                 className="!px-3 !py-[2px] rounded-md font-bold"
                                 style={{ border: '2px solid #D9D9D9' }}
+                                onClick={() => setIsOpenCustomOrder(true)}
                             >
                                 Tùy chỉnh
                             </button>
+
+                            {/* Modal Custom Order */}
+                            <CustomOrderModal
+                                isOpenCustomOrderModal={isOpenCustomOrder}
+                                setIsOpenCustomOrderModal={setIsOpenCustomOrder}
+                                product={product}
+                            />
                         </div>
                     )}
                 </div>
@@ -78,4 +88,4 @@ const ProductItem = ({ product, isOrder = false }) => {
     );
 };
 
-export default ProductItem;
+export default Product;

@@ -2,7 +2,7 @@ import logo from '~/assets/logo.webp';
 import { Input } from 'antd';
 import { ConfigProvider } from 'antd';
 import { Segmented } from 'antd';
-import ProductItem from '~/components/ProductItem';
+import Product from '~/components/Product';
 import { IoSearchSharp } from 'react-icons/io5';
 import { FaArrowLeft } from 'react-icons/fa';
 import { FaQrcode } from 'react-icons/fa';
@@ -102,7 +102,7 @@ const OrderMenu = () => {
                     {/* Content */}
                     <div className="grid grid-cols-2 gap-2 items-center overflow-y-scroll">
                         {products.map((product) => {
-                            return <ProductItem key={product.id} product={product} isOrder={true} />;
+                            return <Product key={product.id} product={product} isOrder={true} />;
                         })}
                     </div>
                 </div>
