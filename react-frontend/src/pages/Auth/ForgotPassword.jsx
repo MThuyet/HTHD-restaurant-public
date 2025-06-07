@@ -13,18 +13,23 @@ const ForgotPassword = () => {
             </div>
 
             {/* Số điện thoại */}
-            <div className="mt-6">
+            <div>
                 <label className="font-bold flex items-center gap-2 mb-2" htmlFor="phone">
                     <PhoneOutlined />
                     Số điện thoại <span className="text-red-500">*</span>
                 </label>
-                <div className="flex gap-2">
+                <div className="flex flex-wrap gap-2">
                     <Input
                         id="phone"
                         placeholder="Nhập số điện thoại"
                         className="!p-3 max-w-[500px] min-w-[300px] !bg-bgBlue placeholder:text-textPrimary !rounded-none !border-none"
                     />
-                    <button className="!p-3 bg-blue-600 hover:bg-blue-500">Gửi mã</button>
+                    <button
+                        type="button"
+                        className="!px-5 !py-3 bg-blue-600 hover:bg-blue-500 text-white font-medium rounded whitespace-nowrap"
+                    >
+                        Gửi mã
+                    </button>
                 </div>
             </div>
 
@@ -44,11 +49,10 @@ const ForgotPassword = () => {
             </div>
 
             {/* Nút */}
-
-            <div className="flex gap-4 mt-4">
+            <div className="flex flex-wrap gap-4 mt-4">
                 <Link to={routes.forgotPasswordRoute}>
                     <button
-                        className="bg-[#F3F3F3] text-black font-bold py-3 px-10 rounded-lg border-none hover:opacity-85"
+                        className="bg-[#F3F3F3] text-black font-bold py-3 px-6 rounded-lg border-none hover:opacity-85 whitespace-nowrap"
                         style={{
                             boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)',
                         }}
@@ -59,7 +63,7 @@ const ForgotPassword = () => {
                 </Link>
                 <button
                     type="submit"
-                    className="bg-primary text-white font-bold py-3 px-10 rounded-lg border-none hover:opacity-85"
+                    className="bg-primary text-white font-bold py-3 px-6 rounded-lg border-none hover:opacity-85 whitespace-nowrap"
                     style={{
                         boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)',
                     }}
