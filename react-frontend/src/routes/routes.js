@@ -1,10 +1,12 @@
 import routes from '~/config/routes';
 
 /* Layouts */
-import EmployeeLayout from '~/layouts/EmployeeLayout/EmployeeLayout';
 import AdminLayout from '~/layouts/AdminLayout/AdminLayout';
 
 /* Pages */
+// Error
+import Errors from '~/pages/Errors/Errors';
+
 // Customer Pages
 import Home from '~/pages/Customer/Home/Home';
 
@@ -16,14 +18,15 @@ import EmployeeManagement from '~/pages/Admin/EmployeeManagement';
 import AdminOrderManagement from '~/pages/Admin/OrderManagement';
 import Dashboard from '~/pages/Admin/Dashboard';
 import Auth from '~/pages/Auth/Auth';
-import Errors from '~/pages/Errors/Errors';
+import OrderMenu from '~/pages/Customer/OrderMenu';
 
 const publicRoutes = [
     { path: routes.customerRoutes.home, component: Home },
+    { path: routes.customerRoutes.orderMenu, component: OrderMenu },
     { path: routes.loginRoute, component: Auth },
     { path: routes.forgotPasswordRoute, component: Auth },
     { path: routes.resetPasswordRoute, component: Auth },
-    { path: routes.errorRoute, component: Errors },
+    { path: '*', component: Errors },
 ];
 
 const privateRoutes = [

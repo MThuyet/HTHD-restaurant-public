@@ -1,8 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+.tablet-container {
+    @apply max-w-[1113px] w-full mx-auto;
+}
 
 :root {
     --primary: #c3551a;
@@ -51,6 +55,8 @@ input,
     }
 }
 
+/* custom scrollbar */
+
 ::-webkit-scrollbar {
     width: 4px;
 }
@@ -68,4 +74,56 @@ input,
 
 ::-webkit-resizer {
     height: 4px;
+}
+
+/* Custom antd */
+
+/* Thanh cuộn nhỏ hơn cho Segmented */
+.ant-segmented::-webkit-scrollbar {
+    height: 4px;
+}
+
+.min-height-scrollbar::-webkit-scrollbar {
+    height: 3px;
+}
+/* Margin cho thanh cuộn không tràn ra ngoài */
+.ant-segmented::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 3px #d9d9d9;
+    border-radius: 12px;
+    margin: 0 5.5px; /* Làm ngắn thanh cuộn ở hai bên */
+}
+
+/* Border bottom thanh tab */
+.ant-tabs-nav {
+    &:before {
+        border: none !important;
+    }
+}
+
+/* Khoảng cách giữa các tab */
+.ant-tabs-nav-list {
+    width: 100% !important;
+    justify-content: space-between !important;
+}
+
+.custom-antd-btn-dark-red:hover {
+    color: var(--dark-red) !important;
+    border-color: var(--dark-red) !important;
+    background-color: var(--white-red) !important;
+}
+
+.custom-antd-btn-dark-blue:hover {
+    color: var(--dark-blue) !important;
+    border-color: var(--dark-blue) !important;
+    background-color: var(--white-blue) !important;
+}
+
+/* Ghi đè phần body của Modal */
+.ant-modal-content {
+    padding: 10px !important;
+}
+
+/* Hoặc nếu chỉ muốn bỏ padding cho body */
+.ant-modal-body {
+    padding: 0 !important;
 }

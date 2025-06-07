@@ -33,7 +33,6 @@ const ForgotPassword = () => {
                 </div>
             </div>
 
-            {/* Mã SMS */}
             <div className="mt-6">
                 <label className="font-medium block mb-2">Mã SMS</label>
                 <div className="flex gap-5">
@@ -41,8 +40,8 @@ const ForgotPassword = () => {
                         <Input
                             key={index}
                             maxLength={1}
-                            className="w-12 h-12 text-center text-xl bg-gray-100"
-                            prefix={index === null ? '' : <MinusOutlined />}
+                            className="w-24 p-4 h-12 text-center text-xl !bg-bgBlue !border-none text-textPrimary"
+                            value="..."
                         />
                     ))}
                 </div>
