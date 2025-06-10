@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { toast } from 'react-toastify';
 import { interceptorLoadingElements } from './formatter';
 
 // khởi tạo một đối tượng Axios (authorizedAxiosInstance) mục đích để custom và cấu hình chung cho dự án
@@ -36,10 +35,10 @@ authorizedAxiosInstance.interceptors.response.use(
         interceptorLoadingElements(false);
 
         // xử lý lỗi tập trung nếu có từ phần trả về của mọi API
-        let errorMessage = error?.response?.data?.message || error?.message;
+
         // ngoại trừ status lỗi 410 (GONE) phục vụ việc tự refresh lại token
-        if (error.response?.status !== 410) {
-            toast.error(errorMessage || 'Có lỗi xảy ra!');
+        if (error.response?.status === 410) {
+            // gọi api refresh token
         }
 
         return Promise.reject(error);

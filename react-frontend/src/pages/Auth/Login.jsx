@@ -1,8 +1,8 @@
 import React from 'react';
-import { Input} from 'antd';
+import { Input } from 'antd';
 import { UserOutlined, LockOutlined, EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
-import routes from '~/config/routes';
+import { ROUTES } from '~/utils/routes';
 
 const Login = () => {
     return (
@@ -33,16 +33,16 @@ const Login = () => {
             <div className="flex gap-4 mt-4">
                 <button
                     type="submit"
-                    className="bg-primary text-white font-bold py-3 px-10 rounded-lg border-none hover:opacity-85"
+                    className="bg-primary text-nowrap text-white font-bold py-3 sm:px-10 px-6 rounded-lg border-none hover:opacity-85"
                     style={{
                         boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)',
                     }}
                 >
                     Đăng nhập
                 </button>
-                <Link to={routes.forgotPasswordRoute}>
+                <Link to={ROUTES.PUBLIC_ROUTES.forgotPassword}>
                     <button
-                        className="bg-[#F3F3F3] text-black font-bold py-3 px-10 rounded-lg border-none hover:opacity-85"
+                        className="bg-[#F3F3F3] text-nowrap text-black font-bold py-3 sm:px-10 px-6 rounded-lg border-none hover:opacity-85"
                         style={{
                             boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)',
                         }}
