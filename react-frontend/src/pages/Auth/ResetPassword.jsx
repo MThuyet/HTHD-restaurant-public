@@ -1,7 +1,7 @@
-import { Input, Typography } from 'antd';
+import { Input } from 'antd';
 import { LockOutlined, LeftOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
-import routes from '~/config/routes';
+import { ROUTES } from '~/utils/routes';
 
 const ResetPassword = () => {
     return (
@@ -30,7 +30,7 @@ const ResetPassword = () => {
             </div>
 
             <div className="flex gap-4 mt-4">
-                <Link to={routes.forgotPasswordRoute}>
+                <Link to={ROUTES.PUBLIC_ROUTES.forgotPassword}>
                     <button
                         className="bg-[#F3F3F3] text-black font-bold py-3 sm:px-10 px-6 whitespace-nowrap rounded-lg border-none hover:opacity-85"
                         style={{

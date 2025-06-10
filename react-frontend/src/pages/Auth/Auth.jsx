@@ -1,23 +1,23 @@
 import { useLocation } from 'react-router-dom';
-import routes from '~/config/routes';
 
 import Login from './Login';
 import ForgotPassword from './ForgotPassword';
 import ResetPassword from './ResetPassword';
 
-import logo from '~/assets/logo.webp';
+import logo from '~/assets/common/logo.webp';
 import chefImage1 from '~/assets/auth/imgs/chef/chef1.webp';
 import chefImage2 from '~/assets/auth/imgs/chef/chef2.webp';
 import chefImage3 from '~/assets/auth/imgs/chef/chef3.webp';
 import chefImage4 from '~/assets/auth/imgs/chef/chef4.webp';
 import { Typography, Carousel } from 'antd';
+import { ROUTES } from '~/utils/routes';
 
 const Auth = () => {
     const location = useLocation();
 
-    const isLoginPage = location.pathname === routes.loginRoute;
-    const isForgotPasswordPage = location.pathname === routes.forgotPasswordRoute;
-    const isResetPasswordPage = location.pathname === routes.resetPasswordRoute;
+    const isLoginPage = location.pathname === ROUTES.PUBLIC_ROUTES.login;
+    const isForgotPasswordPage = location.pathname === ROUTES.PUBLIC_ROUTES.forgotPassword;
+    const isResetPasswordPage = location.pathname === ROUTES.PUBLIC_ROUTES.resetPassword;
 
     return (
         <div className="min-w-screen min-h-screen flex md:flex-row flex-col-reverse items-center gap-8">
