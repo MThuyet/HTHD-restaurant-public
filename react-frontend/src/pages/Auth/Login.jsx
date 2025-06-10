@@ -2,7 +2,7 @@ import React from 'react';
 import { Input } from 'antd';
 import { UserOutlined, LockOutlined, EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
-import routes from '~/config/routes';
+import { ROUTES } from '~/utils/routes';
 
 const Login = () => {
     return (
@@ -40,7 +40,7 @@ const Login = () => {
                 >
                     Đăng nhập
                 </button>
-                <Link to={routes.forgotPasswordRoute}>
+                <Link to={ROUTES.PUBLIC_ROUTES.forgotPassword}>
                     <button
                         className="bg-[#F3F3F3] text-nowrap text-black font-bold py-3 sm:px-10 px-6 rounded-lg border-none hover:opacity-85"
                         style={{

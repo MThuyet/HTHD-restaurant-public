@@ -1,53 +1,51 @@
-import { Fragment } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Outlet, Route, Routes } from 'react-router-dom';
+import Auth from './pages/Auth/Auth';
+import Errors from './pages/Errors';
+import Home from './pages/Customer/Home/Home';
+import Order from './pages/Common/Order';
+import Admin from './pages/Admin';
+import Dashboard from './pages/Admin/Dashboard';
+import MenuManagement from './pages/Admin/MenuManagement';
+import OrderManagement from './pages/Admin/OrderManagement';
+import EmployeeManagement from './pages/Admin/EmployeeManagement';
+import { ROUTES } from './utils/routes';
 
-import './global.css';
-import { privateRoutes, publicRoutes } from './routes/routes';
-import DefaultLayout from './layouts/DefaultLayout/DefaultLayout';
+const EmployeesRoutes = () => {
+    // viết điều kiện ở trên đây
+    return <Outlet />;
+};
+
+const AdminRoutes = () => {
+    // viết điều kiện ở trên đây
+    return <Admin />;
+};
 
 function App() {
     return (
-        <Router>
-            <div id="App">
-                <Routes>
-                    {publicRoutes.map((route, index) => {
-                        const Page = route.component;
+        <Routes>
+            {/* Public Routes */}
+            <Route path="/" element={<Home />} />
+            {/* Auth */}
+            <Route path={ROUTES.PUBLIC_ROUTES.login} element={<Auth />} />
+            <Route path={ROUTES.PUBLIC_ROUTES.forgotPassword} element={<Auth />} />
+            <Route path={ROUTES.PUBLIC_ROUTES.resetPassword} element={<Auth />} />
 
-                        const Layout = route.layout === null ? Fragment : route.layout || DefaultLayout;
+            {/* Employee Routes */}
+            <Route element={<EmployeesRoutes />}>
+                <Route path={ROUTES.EMPLOYEE_ROUTES.order} element={<Order />} />
+            </Route>
 
-                        return (
-                            <Route
-                                key={index}
-                                path={route.path}
-                                element={
-                                    <Layout>
-                                        <Page />
-                                    </Layout>
-                                }
-                            />
-                        );
-                    })}
+            {/* Admin Routes */}
+            <Route element={<AdminRoutes />}>
+                <Route path={ROUTES.ADMIN_ROUTES.dashboard} element={<Dashboard />} />
+                <Route path={ROUTES.ADMIN_ROUTES.menuManagement} element={<MenuManagement />} />
+                <Route path={ROUTES.ADMIN_ROUTES.orderManagement} element={<OrderManagement />} />
+                <Route path={ROUTES.ADMIN_ROUTES.employeeManagement} element={<EmployeeManagement />} />
+            </Route>
 
-                    {privateRoutes.map((route, index) => {
-                        const Page = route.component;
-
-                        const Layout = route.layout === null ? Fragment : route.layout || DefaultLayout;
-
-                        return (
-                            <Route
-                                key={index}
-                                path={route.path}
-                                element={
-                                    <Layout>
-                                        <Page />
-                                    </Layout>
-                                }
-                            />
-                        );
-                    })}
-                </Routes>
-            </div>
-        </Router>
+            {/* Error */}
+            <Route path="*" element={<Errors />} />
+        </Routes>
     );
 }
 
