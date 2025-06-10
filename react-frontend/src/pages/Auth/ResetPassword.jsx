@@ -32,7 +32,7 @@ const ResetPassword = () => {
             <div className="flex gap-4 mt-4">
                 <Link to={routes.forgotPasswordRoute}>
                     <button
-                        className="bg-[#F3F3F3] text-black font-bold py-3 px-10 whitespace-nowrap rounded-lg border-none hover:opacity-85"
+                        className="bg-[#F3F3F3] text-black font-bold py-3 sm:px-10 px-6 whitespace-nowrap rounded-lg border-none hover:opacity-85"
                         style={{
                             boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)',
                         }}
@@ -43,7 +43,7 @@ const ResetPassword = () => {
                 </Link>
                 <button
                     type="submit"
-                    className="bg-primary text-white font-bold py-3 px-10 whitespace-nowrap rounded-lg border-none hover:opacity-85"
+                    className="bg-primary text-white font-bold py-3 sm:px-10 px-6 whitespace-nowrap rounded-lg border-none hover:opacity-85"
                     style={{
                         boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)',
                     }}
