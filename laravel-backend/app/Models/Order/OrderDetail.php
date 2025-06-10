@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Product\Product;
 use App\Models\Product\ComboProduct;
 use App\Models\Employee\Employee;
-use App\Order\Enums\OrderDetailStatus;
+use App\Enums\Order\OrderDetailStatus;
 
 class OrderDetail extends Model
 {

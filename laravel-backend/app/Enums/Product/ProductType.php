@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Order\Enums;
+namespace App\Enums\Product;
 
 enum ProductType: string
 {

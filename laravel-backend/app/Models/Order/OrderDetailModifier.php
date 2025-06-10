@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Product\Ingredient;
 use App\Models\Order\OrderDetail;
-use App\Order\Enums\OrderDetailModifier as OrderDetailModifierEnum;
+use App\Enums\Order\OrderDetailModifier as OrderDetailModifierEnum;
 
 class OrderDetailModifier extends Model
 {

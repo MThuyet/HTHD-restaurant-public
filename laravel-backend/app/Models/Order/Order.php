@@ -10,8 +10,8 @@ use App\Models\Order\Reservation;
 use App\Models\Branch\Branch;
 use App\Models\Branch\Table;
 use App\Models\Employee\Employee;
-use App\Order\Enums\OrderStatus;
-use App\Order\Enums\OrderPaymentMethod;
+use App\Enums\Order\OrderStatus;
+use App\Enums\Order\OrderPaymentMethod;
 
 class Order extends Model
 {

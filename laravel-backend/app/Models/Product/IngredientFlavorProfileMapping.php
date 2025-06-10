@@ -6,28 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Employee\Employee;
 
-class ComboProduct extends Model
+class IngredientFlavorProfileMapping extends Model
 {
-    protected $table = 'combo_products';
-    protected $primaryKey = 'com_pro_code';
-    public $incrementing = false;
-
     protected $fillable = [
-        'com_pro_code',
-        'com_pro_name',
-        'description',
-        'price',
-        'active',
+        'ing_code', 
+        'fla_pro_id',
+        'impact_radio',
         'created_by_emp',
         'updated_by_emp'
     ];
 
     protected $casts = [
-        'com_pro_code' => 'string',
-        'com_pro_name' => 'string',
-        'description' => 'string',
-        'price' => 'decimal:2',
-        'active' => 'boolean',
+        'ing_code' => 'string',
+        'fla_pro_id' => 'integer',
+        'impact_radio' => 'decimal:2',
         'created_by_emp' => 'string',
         'updated_by_emp' => 'string'
     ];

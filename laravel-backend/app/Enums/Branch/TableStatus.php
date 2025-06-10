@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Branch\Enums;
+namespace App\Enums\Branch;
 
 enum TableStatus: string
 {

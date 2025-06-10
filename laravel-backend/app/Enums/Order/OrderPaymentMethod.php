@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Order\Enums;
+namespace App\Enums\Order;
+
 
 enum OrderPaymentMethod: string
 {

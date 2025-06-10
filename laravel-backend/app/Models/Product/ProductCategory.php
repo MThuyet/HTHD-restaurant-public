@@ -10,6 +10,8 @@ use App\Models\Employee\Employee;
 
 class ProductCategory extends Model
 {
+    use SoftDeletes;
+
     protected $table = 'product_categories';
     protected $primaryKey = 'cat_code';
     public $incrementing = false;
