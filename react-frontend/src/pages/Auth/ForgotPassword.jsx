@@ -18,15 +18,15 @@ const ForgotPassword = () => {
                     <PhoneOutlined />
                     Số điện thoại <span className="text-red-500">*</span>
                 </label>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex sm:gap-2 gap-3">
                     <Input
                         id="phone"
                         placeholder="Nhập số điện thoại"
-                        className="!p-3 max-w-[500px] min-w-[300px] !bg-bgBlue placeholder:text-textPrimary !rounded-none !border-none"
+                        className="!p-3 max-w-[500px] sm:min-w-[300px] min-w-[200px] !bg-bgBlue placeholder:text-textPrimary !rounded-none !border-none"
                     />
                     <button
                         type="button"
-                        className="!px-5 !py-3 bg-blue-600 hover:bg-blue-500 text-white font-medium rounded whitespace-nowrap"
+                        className="!p-3 !bg-darkBlue hover:opacity-85 rounded-md text-white text-nowrap font-bold"
                     >
                         Gửi mã
                     </button>
@@ -49,7 +49,7 @@ const ForgotPassword = () => {
 
             {/* Nút */}
             <div className="flex flex-wrap gap-4 mt-4">
-                <Link to={routes.forgotPasswordRoute}>
+                <Link to={routes.loginRoute}>
                     <button
                         className="bg-[#F3F3F3] text-black font-bold py-3 px-6 rounded-lg border-none hover:opacity-85 whitespace-nowrap"
                         style={{
