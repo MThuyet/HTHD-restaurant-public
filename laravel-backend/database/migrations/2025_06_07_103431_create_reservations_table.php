@@ -20,6 +20,7 @@ return new class extends Migration
             $table->date('res_date');
             $table->time('res_time');
             $table->text('note')->nullable();
+            $table->datetime('confirmed_at')->nullable();
             $table->datetime('canceled_at')->nullable();
             $table->text('canceled_reason')->nullable();
 
