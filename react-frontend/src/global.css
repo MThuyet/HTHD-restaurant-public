@@ -28,8 +28,13 @@
     --white-green: #dcfce7;
     --dark-green: #166534;
 
+    --white-purple: #f3e8ff;
+    --dark-purple: #6b21a8;
+
     --text-color: #333;
     --border-color: #d9d9d9;
+
+    --bg-blue: #f1f5fb;
 
     --font-family: 'Segoe UI', sans-serif;
 }
@@ -131,4 +136,19 @@ input,
 /* Hoặc nếu chỉ muốn bỏ padding cho body */
 .ant-modal-body {
     padding: 0 !important;
+}
+
+.custom-otp input {
+    width: 96px !important;
+    padding: 16px !important;
+    height: 48px !important;
+    text-align: center !important;
+    font-size: 1.25rem !important;
+    background-color: var(--bg-blue) !important;
+    border: none !important;
+    border-radius: 8px !important;
+}
+
+.centered-tabs-nav-list .ant-tabs-nav-list {
+    justify-content: center !important;
 }

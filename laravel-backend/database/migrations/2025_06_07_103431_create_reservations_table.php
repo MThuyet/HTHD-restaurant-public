@@ -14,12 +14,13 @@ return new class extends Migration
         Schema::create('reservations', function (Blueprint $table) {
             $table->ulid('res_code')->primary();
             $table->enum('res_type', ['WALK_IN', 'BOOKING'])->default('WALK_IN');
-            $table->enum('status', ['PENDING_CONFIRMATION', 'CONFIRMED', 'CANCELLED', 'SEATED', 'COMPLETED']);
+            $table->enum('status', ['PENDING_CONFIRMATION', 'CONFIRMED', 'COMPLETED', 'CANCELLED', 'LATE']);
             $table->char('booking_code', 20)->unique()->nullable();
             $table->tinyInteger('people_numbers');
-            $table->date('res_date');
-            $table->time('res_time');
+            $table->dateTime('res_date_time');
             $table->text('note')->nullable();
+            $table->datetime('created_booking_code_at')->nullable();
+            $table->datetime('completed_at')->nullable();
             $table->datetime('canceled_at')->nullable();
             $table->text('canceled_reason')->nullable();
 

@@ -1,9 +1,11 @@
-import { Outlet, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Auth from './pages/Auth/Auth';
 import Errors from './pages/Errors';
 import Home from './pages/Customer/Home/Home';
 import Order from './pages/Common/Order';
+import BookingManagement from './pages/Employee/BookingManagement';
 import Admin from './pages/Admin';
+import Employee from './pages/Employee';
 import Dashboard from './pages/Admin/Dashboard';
 import MenuManagement from './pages/Admin/MenuManagement';
 import OrderManagement from './pages/Admin/OrderManagement';
@@ -12,7 +14,7 @@ import { ROUTES } from './utils/routes';
 
 const EmployeesRoutes = () => {
     // viết điều kiện ở trên đây
-    return <Outlet />;
+    return <Employee />;
 };
 
 const AdminRoutes = () => {
@@ -31,8 +33,9 @@ function App() {
             <Route path={ROUTES.PUBLIC_ROUTES.resetPassword} element={<Auth />} />
 
             {/* Employee Routes */}
+            <Route path={ROUTES.EMPLOYEE_ROUTES.order} element={<Order />} />
             <Route element={<EmployeesRoutes />}>
-                <Route path={ROUTES.EMPLOYEE_ROUTES.order} element={<Order />} />
+                <Route path={ROUTES.EMPLOYEE_ROUTES.bookingManagement} element={<BookingManagement />} />
             </Route>
 
             {/* Admin Routes */}

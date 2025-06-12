@@ -1,9 +1,21 @@
 import { Input, Typography } from 'antd';
 import { PhoneOutlined, LeftOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
+
 import { ROUTES } from '~/utils/routes';
 
 const ForgotPassword = () => {
+    const onChange = (text) => {
+        console.log('onChange:', text);
+    };
+    const onInput = (value) => {
+        console.log('onInput:', value);
+    };
+    const sharedProps = {
+        onChange,
+        onInput,
+    };
+
     return (
         <form action="" className="flex flex-col gap-6">
             <div>
@@ -36,14 +48,12 @@ const ForgotPassword = () => {
             <div className="mt-6">
                 <label className="font-medium block mb-2">Mã SMS</label>
                 <div className="flex gap-5">
-                    {[...Array(4)].map((_, index) => (
-                        <Input
-                            key={index}
-                            maxLength={1}
-                            className="w-24 p-4 h-12 text-center text-xl !bg-bgBlue !border-none text-textPrimary"
-                            value="..."
-                        />
-                    ))}
+                    <Input.OTP
+                        length={6}
+                        className="custom-otp"
+                        separator={(i) => <span style={{ color: i & 1 ? 'red' : 'blue' }}>/</span>}
+                        {...sharedProps}
+                    />
                 </div>
             </div>
 
