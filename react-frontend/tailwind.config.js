@@ -4,8 +4,8 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['"Be Vietnam Pro"', 'sans-serif'], // <-- Override font sans mặc định
-                segoeUI: ['Segoe UI', 'sans-serif'], //  vẫn giữ font này nếu cần
+                sans: ['Segoe UI', 'sans-serif'],
+                pacifico: ['Pacifico', 'sans-serif'],
             },
             colors: {
                 primary: '#C3551A',

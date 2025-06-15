@@ -1,7 +1,7 @@
 import { Outlet, Route, Routes } from 'react-router-dom';
 import Auth from './pages/Auth/Auth';
 import Errors from './pages/Errors';
-import Home from './pages/Customer/Home/Home';
+import Home from './pages/Customer/Home';
 import Order from './pages/Common/Order';
 import Admin from './pages/Admin';
 import Dashboard from './pages/Admin/Dashboard';

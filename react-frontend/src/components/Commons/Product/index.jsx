@@ -30,7 +30,10 @@ const Product = ({ product, isOrder = false }) => {
 
             <div className="">
                 <div className="flex flex-col">
-                    <Typography.Title level={5} className="sm:!text-base !text-[13px]	 !m-0">
+                    <Typography.Title
+                        level={5}
+                        className={`sm:!text-base !text-[13px] !m-0 ${isOrder ? '' : '!text-white'}`}
+                    >
                         {product.name}
                     </Typography.Title>
 
@@ -49,7 +52,9 @@ const Product = ({ product, isOrder = false }) => {
                         </div>
                     </div>
 
-                    <div className="mt-1 text-[11px] font-[500] text-[#808080]">{product.description}</div>
+                    <div className={`mt-1 text-[11px] font-[500] ${isOrder ? 'text-[#808080]' : '!text-white'}`}>
+                        {product.description}
+                    </div>
                 </div>
 
                 <div className="flex items-center justify-between mt-2 flex-wrap ">
