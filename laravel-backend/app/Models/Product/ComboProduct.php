@@ -4,6 +4,8 @@ namespace App\Models\Product;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\Employee\Employee;
+
 class ComboProduct extends Model
 {
     protected $table = 'combo_products';
@@ -32,11 +34,11 @@ class ComboProduct extends Model
 
     public function createdBy()
     {
-        return $this->belongsTo('App\Models\Employee\Employee', 'created_by_emp', 'emp_code');
+        return $this->belongsTo(Employee::class, 'created_by_emp', 'emp_code');
     }
 
     public function updatedBy()
     {
-        return $this->belongsTo('App\Models\Employee\Employee', 'updated_by_emp', 'emp_code');
+        return $this->belongsTo(Employee::class, 'updated_by_emp', 'emp_code');
     }
 }

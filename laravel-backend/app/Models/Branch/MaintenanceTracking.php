@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Employee\Employee;
 use App\Models\Branch\Table;
-use App\Branch\Enums\MaintenanceStatus;
+use App\Enums\Branch\MaintenanceStatus;
 
 class MaintenanceTracking extends Model
 {

@@ -4,6 +4,7 @@ namespace App\Models\Product;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\Employee\Employee;
 class ComboProductMapping extends Model
 {
     protected $fillable = [
@@ -24,11 +25,11 @@ class ComboProductMapping extends Model
 
     public function createdBy()
     {
-        return $this->belongsTo('App\Models\Employee\Employee', 'created_by_emp', 'emp_code');
+        return $this->belongsTo(Employee::class, 'created_by_emp', 'emp_code');
     }
 
     public function updatedBy()
     {
-        return $this->belongsTo('App\Models\Employee\Employee', 'updated_by_emp', 'emp_code');
+        return $this->belongsTo(Employee::class, 'updated_by_emp', 'emp_code');
     }
 }

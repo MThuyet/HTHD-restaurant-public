@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Branch\Area;
 use App\Models\Branch\MaintenanceTracking;
-use App\Branch\Enums\TableStatus;
+use App\Enums\Branch\TableStatus;
 
 class Table extends Model
 {

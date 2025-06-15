@@ -9,8 +9,8 @@ use App\Models\Customer\Customer;
 use App\Models\Branch\Branch;
 use App\Models\Branch\Table;
 use App\Models\Employee\Employee;
-use App\Order\Enums\ReservationStatus;
-use App\Order\Enums\ReservationType;
+use App\Enums\Order\ReservationStatus;
+use App\Enums\Order\ReservationType;
 
 class Reservation extends Model
 {
