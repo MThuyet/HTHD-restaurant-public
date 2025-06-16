@@ -4,34 +4,55 @@ namespace App\Models\Employee;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 use App\Models\Employee\Department;
 use App\Models\Employee\Position;
 use App\Models\Branch\Branch;
 use App\Models\Kitchen\Kitchen;
+use App\Models\Employee\Permission;
 
-class Employee extends Model
+class Employee extends Authenticatable
 {
-    use SoftDeletes;
+    use SoftDeletes, HasApiTokens;
 
     protected $table = 'employees';
 
+    protected $primaryKey = 'emp_code';
+
+    public $incrementing = false;
+
+    protected $keyType = 'string';
+
     protected $fillable = [
         'emp_code',
+        'username',
+        'password',
         'full_name',
+        'email',
+        'phone',
+        'address',
+        'department_id',
+        'role_id',
+        'status',
+        'emp_code',
         'gender',
         'birthdate',
         'phone_number',
-        'address',
         'identifier',
-        'username',
-        'password',
         'old_password',
         'old_change_password',
         'bra_code',
         'pos_code',
         'dep_code',
         'kit_code',
+    ];
+
+    protected $hidden = [
+        'password',
+        'old_password',
+        'old_change_password',
     ];
 
     protected $casts = [
@@ -66,9 +87,20 @@ class Employee extends Model
     {
         return $this->belongsTo(Department::class, 'dep_code');
     }
-    
+
     public function kitchen()
     {
         return $this->belongsTo(Kitchen::class, 'kit_code');
+    }
+
+    public function permissions()
+    {
+        return $this->belongsToMany(Permission::class, 'employee_permission_mappings', 'emp_code', 'permission_id')
+            ->withTimestamps();
+    }
+
+    public function hasPermission(string $route): bool
+    {
+        return $this->permissions()->where('route', $route)->exists();
     }
 }

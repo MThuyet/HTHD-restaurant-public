@@ -11,13 +11,13 @@ class Position extends Model
     protected $fillable = [
         'pos_code',
         'pos_name',
-        'pos_description',
+        'description',
     ];
 
     protected $casts = [
         'pos_code' => 'string',
         'pos_name' => 'string',
-        'pos_description' => 'string',
+        'description' => 'string',
     ];
 
     public function employees()

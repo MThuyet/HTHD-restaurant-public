@@ -8,6 +8,9 @@ use App\Http\Controllers\Kitchen;
 use App\Http\Controllers\Order;
 use App\Http\Controllers\Product;
 use App\Http\Controllers\UI;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Employee\EmployeeController;
+
 
 Route::get('/test', function () {
     return response()->json([
@@ -16,4 +19,13 @@ Route::get('/test', function () {
     ]);
 });
 
-Route::post('/test-branch-code', [Branch\BranchController::class, 'store']);
+// Public routes
+Route::post('/login', [AuthController::class, 'login']);
+
+// Protected routes
+// yêu cầu quyền employee.order khi truy cập các route trong group này
+Route::middleware(['auth:sanctum', 'check.permission:admin'])->group(
+    function () {
+        Route::get('/employees', [EmployeeController::class, 'index']);
+    }
+);

@@ -8,6 +8,7 @@ let authorizedAxiosInstance = axios.create();
 authorizedAxiosInstance.defaults.timeout = 1000 * 60 * 10;
 // withCredentials: Sẽ cho phép Axios tự động gửi cookie trong mỗi request lên BE (phục vụ việc lưu JWT token (refresh & accept) vào trong httpOnly Cookie của trình duyệt)
 authorizedAxiosInstance.defaults.withCredentials = true;
+authorizedAxiosInstance.defaults.withXSRFToken = true;
 
 // cấu hình interceptors
 // Add a request interceptor (can thiệp vào giữa những request)
