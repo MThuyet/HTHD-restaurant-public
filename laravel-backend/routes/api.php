@@ -21,11 +21,3 @@ Route::get('/test', function () {
 
 // Public routes
 Route::post('/login', [AuthController::class, 'login']);
-
-// Protected routes
-// yêu cầu quyền employee.order khi truy cập các route trong group này
-Route::middleware(['auth:sanctum', 'check.permission:admin'])->group(
-    function () {
-        Route::get('/employees', [EmployeeController::class, 'index']);
-    }
-);

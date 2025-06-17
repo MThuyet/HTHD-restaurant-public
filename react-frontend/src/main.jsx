@@ -8,12 +8,15 @@ import App from './App.jsx';
 import './global.css';
 import { themeConfig } from './themeConfig.js';
 import { BrowserRouter } from 'react-router-dom';
+import { UserProvider } from './contexts/UserContext';
 
 createRoot(document.getElementById('root')).render(
     <BrowserRouter basename="/">
         <ConfigProvider theme={themeConfig} locale={viVN}>
             <AntdApp>
-                <App />
+                <UserProvider>
+                    <App />
+                </UserProvider>
             </AntdApp>
         </ConfigProvider>
     </BrowserRouter>,
