@@ -1,8 +1,8 @@
 import authorizedAxiosInstance from '~/utils/authorizeAxios';
-import { API_URL } from '~/utils/constants';
 
-// định nghĩa các api ở đây
-export const testAPI = async () => {
-    const response = await authorizedAxiosInstance.get(`${API_URL}/test`);
+export const loginAPI = async (data) => {
+    // Lấy CSRF token trước khi đăng nhập
+    await authorizedAxiosInstance.get('/sanctum/csrf-cookie');
+    const response = await authorizedAxiosInstance.post('/api/login', data);
     return response.data;
 };

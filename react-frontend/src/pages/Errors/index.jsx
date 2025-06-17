@@ -22,7 +22,7 @@ const Errors = ({ title = 404, content = 'Không tìm thấy trang' }) => {
                     <h2 className="mt-10 text-2xl font-extrabold text-black">{content}</h2>
 
                     <button
-                        onClick={() => navigate('/')}
+                        onClick={() => navigate('/', { replace: true })}
                         className="mt-4 px-6 py-2 bg-amber-700 hover:bg-amber-800 text-white font-extrabold rounded shadow"
                     >
                         Trở lại trang chủ

@@ -1,3 +1,27 @@
+export const VALIDATE_USERNAME = {
+    required: 'Vui lòng nhập tên tài khoản',
+    maxLength: {
+        value: 60,
+        message: 'Tên tài khoản không được vượt quá 60 ký tự',
+    },
+    pattern: {
+        value: /^[a-zA-Z0-9_]+$/,
+        message: 'Tên tài khoản chỉ được chứa chữ cái, số và dấu gạch dưới',
+    },
+};
+
+export const VALIDATE_PASSWORD = {
+    required: 'Vui lòng nhập mật khẩu',
+    maxLength: {
+        value: 60,
+        message: 'Mật khẩu không được vượt quá 60 ký tự',
+    },
+    pattern: {
+        value: /^[a-zA-Z0-9_]+$/,
+        message: 'Mật khẩu chỉ được chứa chữ cái, số và dấu gạch dưới',
+    },
+};
+
 // dùng css pointer-event kết hợp với Axios interceptors để chặn user spam click tại bất kỳ chỗ nào có hành động click gọi api
 // cách sử dụng: với tất cả các link hoặc button mà có hành động gọi api thì thêm class "interceptor-loading" cho nó
 export const interceptorLoadingElements = (calling) => {
