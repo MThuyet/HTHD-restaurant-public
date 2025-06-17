@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 
 import Login from './Login';
 import ForgotPassword from './ForgotPassword';
@@ -11,13 +11,26 @@ import chefImage3 from '~/assets/auth/imgs/chef/chef3.webp';
 import chefImage4 from '~/assets/auth/imgs/chef/chef4.webp';
 import { Typography, Carousel } from 'antd';
 import { ROUTES } from '~/utils/routes';
+import { useContext } from 'react';
+import UserContext from '~/contexts/UserContext';
 
 const Auth = () => {
     const location = useLocation();
+    const { user } = useContext(UserContext);
 
     const isLoginPage = location.pathname === ROUTES.PUBLIC_ROUTES.login;
     const isForgotPasswordPage = location.pathname === ROUTES.PUBLIC_ROUTES.forgotPassword;
     const isResetPasswordPage = location.pathname === ROUTES.PUBLIC_ROUTES.resetPassword;
+
+    if (user) {
+        if (user.permissions.includes('admin')) {
+            return <Navigate to={ROUTES.ADMIN_ROUTES.dashboard} replace />;
+        } else if (user.permissions.includes('employee.order')) {
+            return <Navigate to={ROUTES.EMPLOYEE_ROUTES.order} replace />;
+        } else if (user.permissions.includes('employee.kitchen')) {
+            return <Navigate to="/" replace />;
+        }
+    }
 
     return (
         <div className="min-w-screen min-h-screen flex md:flex-row flex-col-reverse items-center gap-8">

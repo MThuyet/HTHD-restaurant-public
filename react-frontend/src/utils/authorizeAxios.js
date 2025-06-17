@@ -1,14 +1,14 @@
 import axios from 'axios';
+import { API_URL } from './constants';
 import { interceptorLoadingElements } from './formatter';
 
 // khởi tạo một đối tượng Axios (authorizedAxiosInstance) mục đích để custom và cấu hình chung cho dự án
-let authorizedAxiosInstance = axios.create();
-
-// thời gian chờ tối đa của 1 request là 10p
-authorizedAxiosInstance.defaults.timeout = 1000 * 60 * 10;
-// withCredentials: Sẽ cho phép Axios tự động gửi cookie trong mỗi request lên BE (phục vụ việc lưu JWT token (refresh & accept) vào trong httpOnly Cookie của trình duyệt)
-authorizedAxiosInstance.defaults.withCredentials = true;
-authorizedAxiosInstance.defaults.withXSRFToken = true;
+let authorizedAxiosInstance = axios.create({
+    baseURL: API_URL,
+    timeout: 1000 * 60 * 10,
+    withCredentials: true,
+    withXSRFToken: true,
+});
 
 // cấu hình interceptors
 // Add a request interceptor (can thiệp vào giữa những request)
@@ -16,6 +16,13 @@ authorizedAxiosInstance.interceptors.request.use(
     (config) => {
         // chặn spam click
         interceptorLoadingElements(true);
+
+        // Lấy token từ sessionStorage
+        const token = sessionStorage.getItem('token');
+        if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
+        }
+
         return config;
     },
     (error) => {
@@ -37,9 +44,10 @@ authorizedAxiosInstance.interceptors.response.use(
 
         // xử lý lỗi tập trung nếu có từ phần trả về của mọi API
 
-        // ngoại trừ status lỗi 410 (GONE) phục vụ việc tự refresh lại token
-        if (error.response?.status === 410) {
-            // gọi api refresh token
+        // Xử lý khi token hết hạn
+        if (error.response?.status === 401) {
+            sessionStorage.removeItem('token');
+            // Có thể thêm redirect đến trang login nếu cần
         }
 
         return Promise.reject(error);
