@@ -29,7 +29,7 @@ const CheckBooking = () => {
                     <Input
                         ref={inputRef}
                         placeholder="Nhập mã đặt bàn"
-                        className="!bg-[rgba(255,255,255,0.05)] border-none !text-white font-semibold uppercase !placeholder-[#999] focus:!border-none focus:!ring-0 !placeholder:font-normal !rounded-md"
+                        className="!bg-[rgba(255,255,255,0.05)] !py-3 border-none !text-white font-semibold uppercase !placeholder-[#999] focus:!border-none focus:!ring-0 !placeholder:font-normal !rounded-md"
                     />
                 </div>
 
