@@ -73,24 +73,27 @@ class Employee extends Authenticatable
         'kit_code' => 'string',
     ];
 
+    // tham số thứ 2 là tên của khóa ngoại trong bảng hiện tại (employee)
+    // tham số thứ 3 là tên của khóa chính trong bảng liên quan (branch)
+    // nếu ko chỉ định tham số thứ 3 thì mặc định sẽ lấy id
     public function branch()
     {
-        return $this->belongsTo(Branch::class, 'bra_code');
+        return $this->belongsTo(Branch::class, 'bra_code', 'bra_code');
     }
 
     public function position()
     {
-        return $this->belongsTo(Position::class, 'pos_code');
+        return $this->belongsTo(Position::class, 'pos_code', 'pos_code');
     }
 
     public function department()
     {
-        return $this->belongsTo(Department::class, 'dep_code');
+        return $this->belongsTo(Department::class, 'dep_code', 'dep_code');
     }
 
     public function kitchen()
     {
-        return $this->belongsTo(Kitchen::class, 'kit_code');
+        return $this->belongsTo(Kitchen::class, 'kit_code', 'kit_code');
     }
 
     public function permissions()

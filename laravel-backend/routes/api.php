@@ -11,13 +11,15 @@ use App\Http\Controllers\UI;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Employee\EmployeeController;
 
-
-Route::get('/test', function () {
-    return response()->json([
-        'success' => true,
-        'message' => 'Successfully test API'
-    ]);
-});
-
 // Public routes
 Route::post('/login', [AuthController::class, 'login']);
+
+// ADMIN private route
+Route::middleware('auth:sanctum', 'check.permission:admin')->group(function () {
+    /* EMPLOYEE */
+    // list employees
+    Route::get('/employees', [EmployeeController::class, 'index']);
+    // get employee by emp_code
+    Route::get('/employees/{emp_code}', [EmployeeController::class, 'show']);
+    /* END EMPLOYEE */
+});
