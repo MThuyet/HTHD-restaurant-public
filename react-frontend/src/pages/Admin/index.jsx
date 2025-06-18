@@ -128,12 +128,12 @@ const Admin = () => {
 
     return (
         <ConfigProvider locale={viVN} theme={configTheme}>
-            <Layout>
+            <Layout className="!h-[100dvh]">
                 <Sider
                     trigger={null}
                     collapsible
                     collapsed={collapsed}
-                    width={250}
+                    width={220}
                     className="!bg-white !h-[100vh] !p-3 !pt-1"
                 >
                     <div className={'flex items-center h-16 gap-3 !mb-8 !p-1'}>
@@ -184,7 +184,7 @@ const Admin = () => {
                             </div>
                         </Dropdown>
                     </Header>
-                    <Content className="!bg-[#F1F5FB] rounded-[20px] overflow-hidden !p-4">
+                    <Content className="!bg-[#F1F5FB] rounded-md overflow-auto scrollbar-none !p-2">
                         <Outlet />
                     </Content>
                 </Layout>
