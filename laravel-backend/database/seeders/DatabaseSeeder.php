@@ -2,8 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,20 +11,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::insert(
-            [
-                [
-                    'name' => 'John Doe',
-                    'email' => 'john@doe.com',
-                    'password' => bcrypt('password'),
-                ],
-                [
-                    'name' => 'Jane Doe',
-                    'email' => 'jane@doe.com',
-                    'password' => bcrypt('password'),
-                ],
-
-            ]
-        );
+        $this->call([
+            BranchSeeder::class,
+            DepartmentSeeder::class,
+            PositionSeeder::class,
+            KitchenSeeder::class,
+            EmployeeSeeder::class,
+            PermissionSeeder::class,
+            EmployeePermissionMappingSeeder::class,
+        ]);
     }
 }

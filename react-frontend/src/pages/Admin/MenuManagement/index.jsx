@@ -6,9 +6,9 @@ import { useRef } from 'react';
 
 const columns = [
     {
-        title: 'ID',
+        title: 'Mã sản phẩm',
         dataIndex: 'id',
-        search: false,
+        // search: false,
     },
     {
         title: 'Danh mục',
@@ -148,6 +148,7 @@ const MenuManagement = () => {
 
     return (
         <ProTable
+            className="flex flex-col w-full"
             columns={columns}
             actionRef={actionRef}
             cardBordered
