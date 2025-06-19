@@ -5,6 +5,7 @@ import Errors from './pages/Errors';
 import Home from './pages/Customer/Home';
 import Order from './pages/Common/Order';
 import BookingManagement from './pages/Employee/BookingManagement';
+import TableManagement from './pages/Employee/TableManagement';
 import Admin from './pages/Admin';
 import Employee from './pages/Employee';
 import Dashboard from './pages/Admin/Dashboard';
@@ -23,7 +24,7 @@ const EmployeesRoutes = ({ user, isLoading }) => {
     if (user && user.permissions?.includes('employee.order')) {
         return <Outlet />;
     }
-    if (user) {
+    if (user && user.permissions?.includes('employee.booking')) {
         return <Employee />;
     }
 
@@ -56,6 +57,7 @@ function App() {
             <Route element={<EmployeesRoutes user={user} isLoading={isLoading} />}>
                 <Route path={ROUTES.EMPLOYEE_ROUTES.order} element={<Order />} />
                 <Route path={ROUTES.EMPLOYEE_ROUTES.bookingManagement} element={<BookingManagement />} />
+                <Route path={ROUTES.EMPLOYEE_ROUTES.tableManagement} element={<TableManagement />} />
             </Route>
 
             {/* Admin Routes */}

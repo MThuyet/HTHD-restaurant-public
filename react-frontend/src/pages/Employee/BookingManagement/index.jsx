@@ -10,7 +10,7 @@ import BookingModal from '~/components/Employee/Booking/BookingModal';
 import { bookingList } from '~/apis/mockData';
 import { RESERVATION_STATUS } from '~/utils/constants';
 
-const bookingManagement = () => {
+const BookingManagement = () => {
     const actionRef = useRef();
     const [isOpenBookingDetailModal, setIsOpenBookingDetailModal] = useState(false);
     const [isOpenBookingModal, setIsOpenBookingModal] = useState(false);
@@ -269,4 +269,4 @@ const bookingManagement = () => {
     );
 };
 
-export default bookingManagement;
+export default BookingManagement;

@@ -11,7 +11,6 @@ use App\Models\Employee\Department;
 use App\Models\Employee\Position;
 use App\Models\Branch\Branch;
 use App\Models\Kitchen\Kitchen;
-use App\Models\Employee\Permission;
 
 class Employee extends Authenticatable
 {
@@ -73,9 +72,6 @@ class Employee extends Authenticatable
         'kit_code' => 'string',
     ];
 
-    // tham số thứ 2 là tên của khóa ngoại trong bảng hiện tại (employee)
-    // tham số thứ 3 là tên của khóa chính trong bảng liên quan (branch)
-    // nếu ko chỉ định tham số thứ 3 thì mặc định sẽ lấy id
     public function branch()
     {
         return $this->belongsTo(Branch::class, 'bra_code', 'bra_code');
@@ -94,16 +90,5 @@ class Employee extends Authenticatable
     public function kitchen()
     {
         return $this->belongsTo(Kitchen::class, 'kit_code', 'kit_code');
-    }
-
-    public function permissions()
-    {
-        return $this->belongsToMany(Permission::class, 'employee_permission_mappings', 'emp_code', 'permission_id')
-            ->withTimestamps();
-    }
-
-    public function hasPermission(string $route): bool
-    {
-        return $this->permissions()->where('route', $route)->exists();
     }
 }

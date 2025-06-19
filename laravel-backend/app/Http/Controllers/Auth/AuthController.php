@@ -22,22 +22,17 @@ class AuthController extends Controller
             ], 400);
         }
 
-        // Tìm người dùng theo tên đăng nhập
-        $employee = Employee::where('username', $username)->first();
+        $employee = Employee::where('username', $username)->with('position.permissions')->first();
 
-        // Kiểm tra nếu tìm thấy người dùng và mật khẩu khớp
         if ($employee && Hash::check($password, $employee->password)) {
-            // Tạo token cho người dùng với thời hạn 1 ngày
             $token = $employee->createToken(
                 'auth-token',
                 ['*'],
                 now()->addDay()
             );
 
-            // Lấy quyền của người dùng
-            $permissions = $employee->permissions->pluck('route');
+            $permissions = $employee->position->permissions->pluck('route');
 
-            // Chỉ trả về thông tin cần thiết
             $userData = [
                 'emp_code' => $employee->emp_code,
                 'username' => $employee->username,
@@ -46,7 +41,8 @@ class AuthController extends Controller
                 'bra_code' => $employee->bra_code,
                 'pos_code' => $employee->pos_code,
                 'dep_code' => $employee->dep_code,
-                'permissions' => $permissions
+                'permissions' => $permissions,
+                'positions' => $employee->position,
             ];
 
             return response()->json([

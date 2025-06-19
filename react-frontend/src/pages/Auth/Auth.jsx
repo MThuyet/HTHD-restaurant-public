@@ -23,12 +23,16 @@ const Auth = () => {
     const isResetPasswordPage = location.pathname === ROUTES.PUBLIC_ROUTES.resetPassword;
 
     if (user) {
+        console.log(user);
+
         if (user.permissions.includes('admin')) {
             return <Navigate to={ROUTES.ADMIN_ROUTES.dashboard} replace />;
         } else if (user.permissions.includes('employee.order')) {
             return <Navigate to={ROUTES.EMPLOYEE_ROUTES.order} replace />;
         } else if (user.permissions.includes('employee.kitchen')) {
             return <Navigate to="/" replace />;
+        } else if (user.permissions.includes('employee.booking')) {
+            return <Navigate to={ROUTES.EMPLOYEE_ROUTES.tableManagement} replace />;
         }
     }
 

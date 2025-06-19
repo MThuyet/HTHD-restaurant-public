@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\Employee;
 
 use App\Models\Employee\Employee;
 use Illuminate\Database\Seeder;
@@ -40,7 +40,7 @@ class EmployeeSeeder extends Seeder
 				'username' => 'tranthib',
 				'password' => Hash::make('password123'),
 				'bra_code' => 'BRA001',
-				'pos_code' => 'POS002',
+				'pos_code' => 'POS004',
 				'dep_code' => 'DEP002',
 				'kit_code' => null,
 			],
@@ -58,6 +58,21 @@ class EmployeeSeeder extends Seeder
 				'pos_code' => 'POS003',
 				'dep_code' => 'DEP003',
 				'kit_code' => 'KIT002',
+			],
+			[
+				'emp_code' => 'EMP004',
+				'full_name' => 'Vũ Thị D',
+				'gender' => true,
+				'birthdate' => '1988-12-20',
+				'phone_number' => '0369852112',
+				'address' => '789 Đường GHI, Quận RST, TP.HCM',
+				'identifier' => '456899123',
+				'username' => 'vuthic',
+				'password' => Hash::make('password123'),
+				'bra_code' => 'BRA002',
+				'pos_code' => 'POS006',
+				'dep_code' => 'DEP003',
+				'kit_code' => null,
 			],
 		]);
 	}

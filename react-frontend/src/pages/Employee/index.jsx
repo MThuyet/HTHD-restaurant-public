@@ -1,4 +1,4 @@
-import { Link, Outlet } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 
 import Header from '~/components/Employee/Header';
 import { ROUTES } from '~/utils/routes';
@@ -7,27 +7,27 @@ const items = [
     {
         value: 'Table Management',
         label: (
-            <Link className="font-[500]" to={ROUTES.EMPLOYEE_ROUTES.tableManagement}>
+            <NavLink className="font-[500]" to={ROUTES.EMPLOYEE_ROUTES.tableManagement}>
                 Quản lý bàn
-            </Link>
+            </NavLink>
         ),
         role: 'RECEPTIONIST',
     },
     {
         value: 'Booking Management',
         label: (
-            <Link className="font-[500]" to={ROUTES.EMPLOYEE_ROUTES.bookingManagement}>
+            <NavLink className="font-[500]" to={ROUTES.EMPLOYEE_ROUTES.bookingManagement}>
                 Quản lý đặt bàn
-            </Link>
+            </NavLink>
         ),
         role: 'RECEPTIONIST',
     },
     {
         value: 'Menu Management',
         label: (
-            <Link className="font-[500]" to={ROUTES.EMPLOYEE_ROUTES.menuManagement}>
+            <NavLink className="font-[500]" to={ROUTES.EMPLOYEE_ROUTES.menuManagement}>
                 Quản lý menu
-            </Link>
+            </NavLink>
         ),
         role: 'KITCHEN_STAFF',
     },
