@@ -38,6 +38,11 @@ class PositionSeeder extends Seeder
                 'pos_name' => 'Nhân Viên Bếp',
                 'description' => 'Hỗ trợ chế biến món ăn và vệ sinh khu vực bếp',
             ],
+            [
+                'pos_code' => 'POS006',
+                'pos_name' => 'Nhân Viên Tiếp Tân',
+                'description' => 'Hộ trợ sắp xếp vị trí bàn, quản lý booking, thanh toán',
+            ],
         ]);
     }
 }

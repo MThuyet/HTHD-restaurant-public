@@ -9,6 +9,9 @@ export const ROUTES = {
     // Employee Routes
     EMPLOYEE_ROUTES: {
         order: '/:branch_name/menu-order/:table_code',
+        bookingManagement: '/:branch_name/booking-management',
+        tableManagement: '/:branch_name/table-management',
+        menuManagement: '/:branch_name/menu-management',
     },
 
     // Admin Routes
