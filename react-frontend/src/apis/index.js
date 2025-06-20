@@ -6,3 +6,9 @@ export const loginAPI = async (data) => {
     const response = await authorizedAxiosInstance.post('/api/login', data);
     return response.data;
 };
+
+// fetch list employee
+export const fetchListEmployee = async (params) => {
+    const response = await authorizedAxiosInstance.get(`/api/employees?${params}`);
+    return response.data;
+};
