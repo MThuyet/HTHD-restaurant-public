@@ -43,6 +43,14 @@ return new class extends Migration
                   $table->text('canceled_reason')->nullable();
                   $table->datetime('canceled_at')->nullable();
 
+                  $table->string('cus_phone_number', 20);
+                  $table->foreign('cus_phone_number')->references('phone_number')->on('customers')
+                  ->onDelete('no action')->onUpdate('no action');
+
+                  $table->char('created_by_emp', 20);
+                  $table->foreign('created_by_emp')->references('emp_code')->on('employees')
+                  ->onDelete('restrict')->onUpdate('cascade');
+
                   $table->foreign('ord_code')->references('ord_code')->on('orders')->onDelete('cascade');
                   $table->foreign('pro_code')->references('pro_code')->on('products')->onDelete('set null');
                   $table->foreign('com_pro_code')->references('com_pro_code')->on('combo_products')->onDelete('set null');
