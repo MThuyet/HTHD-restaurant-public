@@ -6,19 +6,25 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    /**
+     * Run the migrations.
+     */
     public function up(): void
     {
-        Schema::create('permissions', function (Blueprint $table) {
-            $table->id();
-            $table->string('name', 50); 
+        Schema::create('languages', function (Blueprint $table) {
+            $table->string('lan_code', 10)->primary();
+            $table->String('lan_name', 60)->unique();
             $table->string('description', 255)->nullable();
-            $table->string('route', 100);
+
             $table->timestamps();
         });
     }
 
+    /**
+     * Reverse the migrations.
+     */
     public function down(): void
     {
-        Schema::dropIfExists('permissions');
+        Schema::dropIfExists('languages');
     }
 };

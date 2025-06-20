@@ -21,8 +21,8 @@ return new class extends Migration
 
             $table->string('created_by_emp', 20)->nullable();
             $table->string('updated_by_emp', 20)->nullable();
-            $table->foreign('created_by_emp')->references('emp_code')->on('employees')->onDelete('set null');
-            $table->foreign('updated_by_emp')->references('emp_code')->on('employees')->onDelete('set null');
+            $table->foreign('created_by_emp')->references('emp_code')->on('employees')->onUpdate('cascade')->onDelete('set null');
+            $table->foreign('updated_by_emp')->references('emp_code')->on('employees')->onUpdate('cascade')->onDelete('set null');
         });
     }
 

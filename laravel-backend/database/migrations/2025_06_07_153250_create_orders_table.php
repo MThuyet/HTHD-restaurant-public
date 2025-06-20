@@ -23,22 +23,16 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->string('cus_phone_number', 20);
             $table->char('res_code', 26);
             $table->char('bra_code', 20);
             $table->char('tab_code', 20);
-            $table->char('created_by_emp', 20);
             $table->char('updated_by_emp', 20)->nullable();
             $table->char('canceled_by_emp', 10)->nullable();
             $table->foreign('res_code')->references('res_code')->on('reservations')
                   ->onDelete('restrict')->onUpdate('cascade');
-            $table->foreign('cus_phone_number')->references('phone_number')->on('customers')
-                  ->onDelete('no action')->onUpdate('no action');
             $table->foreign('bra_code')->references('bra_code')->on('branches')
                   ->onDelete('restrict')->onUpdate('cascade');
             $table->foreign('tab_code')->references('tab_code')->on('tables')
-                  ->onDelete('restrict')->onUpdate('cascade');
-            $table->foreign('created_by_emp')->references('emp_code')->on('employees')
                   ->onDelete('restrict')->onUpdate('cascade');
             $table->foreign('updated_by_emp')->references('emp_code')->on('employees')
                   ->onDelete('no action')->onUpdate('cascade');

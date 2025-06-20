@@ -1,9 +1,8 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\Employee;
 
 use App\Models\Employee\Permission;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class PermissionSeeder extends Seeder
@@ -28,6 +27,11 @@ class PermissionSeeder extends Seeder
                 'name' => 'Employee Kitchen',
                 'description' => 'Employee có quyền xác nhận đơn hàng',
                 'route' => 'employee.kitchen'
+            ],
+            [
+                'name' => 'Employee Booking',
+                'description' => 'Employee có quyền xác nhận quản lý booking',
+                'route' => 'employee.booking'
             ]
         ]);
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\Employee;
 
 use App\Models\Employee\Position;
 use Illuminate\Database\Seeder;
@@ -37,6 +37,11 @@ class PositionSeeder extends Seeder
                 'pos_code' => 'POS005',
                 'pos_name' => 'Nhân Viên Bếp',
                 'description' => 'Hỗ trợ chế biến món ăn và vệ sinh khu vực bếp',
+            ],
+            [
+                'pos_code' => 'POS006',
+                'pos_name' => 'Nhân Viên Tiếp Tân',
+                'description' => 'Hộ trợ sắp xếp vị trí bàn, quản lý booking, thanh toán',
             ],
         ]);
     }

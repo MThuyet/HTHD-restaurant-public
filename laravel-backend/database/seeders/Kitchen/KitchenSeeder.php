@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\Kitchen;
 
 use App\Models\Kitchen\Kitchen;
 use Illuminate\Database\Seeder;
