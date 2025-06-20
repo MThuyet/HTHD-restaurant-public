@@ -12,14 +12,14 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Employee\EmployeeController;
 
 // Public routes
-Route::post('/login', [AuthController::class, 'login']);
+Route::post('/login', [AuthController::class, 'login'])->name('login');
 
 // ADMIN private route
 Route::middleware('auth:sanctum', 'check.permission:admin')->group(function () {
-    /* EMPLOYEE */
-    // list employees
-    Route::get('/employees', [EmployeeController::class, 'index']);
-    // get employee by emp_code
-    Route::get('/employees/{emp_code}', [EmployeeController::class, 'show']);
-    /* END EMPLOYEE */
+	/* EMPLOYEE */
+	// list employees (tìm kiếm qua query params)
+	Route::get('/employees', [EmployeeController::class, 'index']);
+	// get employee by emp_code
+	Route::get('/employees/{emp_code}', [EmployeeController::class, 'show']);
+	/* END EMPLOYEE */
 });
