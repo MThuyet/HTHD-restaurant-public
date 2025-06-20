@@ -91,4 +91,15 @@ class Employee extends Authenticatable
     {
         return $this->belongsTo(Kitchen::class, 'kit_code', 'kit_code');
     }
+
+    public function hasPermission($route)
+    {
+        // Kiểm tra xem position có tồn tại không
+        if (!$this->position) {
+            return false;
+        }
+
+        // Kiểm tra xem position có quyền với route đã cho không
+        return $this->position->permissions->contains('route', $route);
+    }
 }
