@@ -22,7 +22,7 @@ class EmployeeController extends Controller
                 'position:pos_code,pos_name',
                 'department:dep_code,dep_name',
                 'kitchen:kit_code,kit_name',
-                'permissions:id,name,route'
+                'position.permissions:id,name,route'
             ])
                 ->select('emp_code', 'full_name', 'gender', 'birthdate', 'phone_number', 'address', 'username', 'bra_code', 'dep_code', 'pos_code', 'kit_code');
 
@@ -120,7 +120,7 @@ class EmployeeController extends Controller
             'position:pos_code,pos_name',
             'department:dep_code,dep_name',
             'kitchen:kit_code,kit_name',
-            'permissions:id,name,route'
+            'position.permissions:id,name,route'
         ])
             ->select('emp_code', 'full_name', 'gender', 'birthdate', 'phone_number', 'address', 'username', 'bra_code', 'dep_code', 'pos_code', 'kit_code')
             ->findOrFail($emp_code);
