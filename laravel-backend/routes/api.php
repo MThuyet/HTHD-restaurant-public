@@ -10,7 +10,6 @@ use App\Http\Controllers\Product;
 use App\Http\Controllers\UI;
 use App\Http\Controllers\Auth;
 
-// Public routes
 Route::post('/login', [Auth\AuthController::class, 'login']);
 
 // ADMIN private route
