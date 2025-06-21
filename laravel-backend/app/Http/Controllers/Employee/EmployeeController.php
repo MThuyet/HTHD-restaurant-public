@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Employee;
 
 use App\Http\Controllers\Controller;
 use App\Models\Employee\Employee;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
@@ -115,21 +116,34 @@ class EmployeeController extends Controller
      */
     public function show(string $emp_code)
     {
-        $employee = Employee::with([
-            'branch:bra_code,bra_name,address,phone_number1',
-            'position:pos_code,pos_name',
-            'department:dep_code,dep_name',
-            'kitchen:kit_code,kit_name',
-            'position.permissions:id,name,route'
-        ])
-            ->select('emp_code', 'full_name', 'gender', 'birthdate', 'phone_number', 'address', 'username', 'bra_code', 'dep_code', 'pos_code', 'kit_code')
-            ->findOrFail($emp_code);
+        try {
+            $employee = Employee::with([
+                'branch:bra_code,bra_name,address,phone_number1',
+                'position:pos_code,pos_name',
+                'department:dep_code,dep_name',
+                'kitchen:kit_code,kit_name',
+                'position.permissions:id,name,route'
+            ])
+                ->select('emp_code', 'full_name', 'gender', 'birthdate', 'phone_number', 'address', 'username', 'bra_code', 'dep_code', 'pos_code', 'kit_code')
+                ->findOrFail($emp_code);
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Lấy thông tin nhân viên thành công',
-            'data' => $employee
-        ]);
+            return response()->json([
+                'success' => true,
+                'message' => 'Lấy thông tin nhân viên thành công',
+                'data' => $employee
+            ]);
+        } catch (ModelNotFoundException $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Không tìm thấy nhân viên',
+            ], 404);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Đã xảy ra lỗi khi lấy thông tin nhân viên.',
+                'error' => $e->getMessage()
+            ], 500);
+        }
     }
 
     /**
