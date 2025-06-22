@@ -17,6 +17,7 @@ export const ROUTES = {
     // Admin Routes
     ADMIN_ROUTES: {
         dashboard: '/admin/dashboard',
+        branchesManagement: '/admin/branches-management',
         employeeManagement: '/admin/employee-management',
         menuManagement: '/admin/menu-management',
         orderManagement: '/admin/order-management',

@@ -12,3 +12,27 @@ export const fetchListEmployee = async (params) => {
     const response = await authorizedAxiosInstance.get(`/api/employees?${params}`);
     return response.data;
 };
+
+// fetch list branch
+export const fetchListBranchAPI = async (params) => {
+    const response = await authorizedAxiosInstance.get(`/api/branches?${params}`);
+    return response.data;
+};
+
+// create branch
+export const createBranchAPI = async (data) => {
+    const response = await authorizedAxiosInstance.post('/api/branches', data);
+    return response.data;
+};
+
+// update branch
+export const updateBranchAPI = async (bra_code, data) => {
+    const response = await authorizedAxiosInstance.put(`/api/branches/${bra_code}`, data);
+    return response.data;
+};
+
+// delete branch
+export const deleteBranchAPI = async (bra_code) => {
+    const response = await authorizedAxiosInstance.delete(`/api/branches/${bra_code}`);
+    return response.data;
+};

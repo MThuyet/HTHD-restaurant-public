@@ -9,6 +9,7 @@ import {
     AppstoreOutlined,
     LogoutOutlined,
     SettingOutlined,
+    BranchesOutlined,
 } from '@ant-design/icons';
 import { Button, ConfigProvider, Layout, Menu, Typography, Avatar, Dropdown } from 'antd';
 import viVN from 'antd/locale/vi_VN';
@@ -25,6 +26,15 @@ const items = [
         label: (
             <Link className="font-[500]" to={ROUTES.ADMIN_ROUTES.dashboard}>
                 Bảng điều khiển
+            </Link>
+        ),
+    },
+    {
+        key: ROUTES.ADMIN_ROUTES.branchesManagement,
+        icon: <BranchesOutlined />,
+        label: (
+            <Link className="font-[500]" to={ROUTES.ADMIN_ROUTES.branchesManagement}>
+                Quản lý chi nhánh
             </Link>
         ),
     },

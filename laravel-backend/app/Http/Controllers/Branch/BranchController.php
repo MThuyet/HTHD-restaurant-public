@@ -15,8 +15,9 @@ class BranchController extends Controller
     {
         // Lấy tham số phân trang từ url
         // số chi nhánh trên 1 trang (LIMIT = per_page)
-        $perPage = $request->query('per_page', 1); // Mặc định 1
-
+        $perPage = $request->query('per_page', 5); // Mặc định 5
+        $sortBy = $request->query('sort_by', 'created_at');
+        $sortOrder = $request->query('sort_order', 'desc');
         // về trang hiện tại, tham số này được function paginate tự động kiểm tra dựa vào params page trong url
         // Mặc định localhost:8000/api/branches sẽ tương tự với localhost:8000/api/branches?page=1&per_page=1
 
@@ -36,6 +37,7 @@ class BranchController extends Controller
             'updated_at'
         )
             ->whereNull('deleted_at') // Chỉ lấy chi nhánh chưa bị xóa
+            ->orderBy($sortBy, $sortOrder)
             ->paginate($perPage);
 
         // tùy chỉnh dữ liệu phân trang
@@ -64,21 +66,24 @@ class BranchController extends Controller
                 'bra_name' => 'required|string|max:100|unique:branches,bra_name',
                 'phone_number1' => 'required|string|max:20|regex:/^([0-9\s\-\+\(\)]*)$/',
                 'phone_number2' => 'nullable|string|max:20|regex:/^([0-9\s\-\+\(\)]*)$/',
-                'email' => 'nullable|email|max:100|unique:branches,email',
-                'open_time' => 'nullable|date_format:H:i',
-                'close_time' => 'nullable|date_format:H:i|after:open_time',
-                'address' => 'nullable|string|max:255',
-                'frame_code' => 'nullable|string|max:20',
-                'tax_code' => 'nullable|string|max:30',
+                'email' => 'required|email|max:100|unique:branches,email',
+                'open_time' => 'required|date_format:H:i',
+                'close_time' => 'required|date_format:H:i|after:open_time',
+                'address' => 'required|string|max:255',
+                'frame_code' => 'required|string|max:20',
+                'tax_code' => 'required|string|max:30',
                 'active' => 'nullable|boolean',
             ], [
                 'bra_name.required' => 'Tên chi nhánh không được để trống',
                 'bra_name.unique' => 'Tên chi nhánh đã tồn tại',
                 'phone_number1.required' => 'Số điện thoại không được để trống',
                 'phone_number1.regex' => 'Số điện thoại không hợp lệ',
+                'email.required' => 'Email không được để trống',
                 'email.email' => 'Email không đúng định dạng',
                 'email.unique' => 'Email đã tồn tại',
                 'close_time.after' => 'Giờ đóng cửa phải sau giờ mở cửa',
+                'frame_code.required' => 'Mã khung giờ không được để trống',
+                'tax_code.required' => 'Mã số thuế không được để trống',
             ]);
 
             // Sử dụng transaction để khi có bất kỳ lỗi nào thì sẽ rollback tất cả các thay đổi đã thực hiện, nếu có nhiều người dùng cùng thao tác sẽ đảm bảo các thao tác ko ảnh hưởng lẫn nhau
@@ -175,14 +180,15 @@ class BranchController extends Controller
             $branch = Branch::whereNull('deleted_at')
                 ->findOrFail($bra_code);
 
+
             // Validation với thông báo tùy chỉnh
             $validated = $request->validate([
                 'bra_name' => 'string|max:100|unique:branches,bra_name,' . $bra_code . ',bra_code',
                 'phone_number1' => 'string|max:20|regex:/^([0-9\s\-\+\(\)]*)$/',
                 'phone_number2' => 'nullable|string|max:20|regex:/^([0-9\s\-\+\(\)]*)$/',
                 'email' => 'nullable|email|max:100|unique:branches,email,' . $bra_code . ',bra_code',
-                'open_time' => 'nullable|date_format:H:i',
-                'close_time' => 'nullable|date_format:H:i|after:open_time',
+                'open_time' => 'required|date_format:H:i',
+                'close_time' => 'required|date_format:H:i|after:open_time',
                 'address' => 'nullable|string|max:255',
                 'frame_code' => 'nullable|string|max:20',
                 'tax_code' => 'nullable|string|max:30',
