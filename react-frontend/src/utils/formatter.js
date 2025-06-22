@@ -1,3 +1,5 @@
+import dayjs from 'dayjs';
+
 export const VALIDATE_USERNAME = {
     required: 'Vui lòng nhập tên tài khoản',
     maxLength: {
@@ -43,4 +45,12 @@ export const interceptorLoadingElements = (calling) => {
 // format price
 export const formatPrice = (price) => {
     return Number(price).toLocaleString('vi-VN');
+};
+
+// format time từ "HH:mm:ss" thành "HHhMMp"
+export const formatTime = (time) => {
+    if (!time) return 'Không xác định';
+    const d = dayjs(time, ['HH:mm', 'HH:mm:ss', 'HHmm', 'HHmmss'], true);
+    if (!d.isValid()) return 'Không xác định';
+    return `${d.format('HH')}h${d.format('mm')}p`;
 };

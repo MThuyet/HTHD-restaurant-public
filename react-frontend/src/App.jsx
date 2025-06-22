@@ -16,6 +16,7 @@ import { ROUTES } from './utils/routes';
 import { useContext } from 'react';
 import UserContext from './contexts/UserContext';
 import LoadingScreen from './components/Commons/LoadingScreen';
+import BranchesManagement from './pages/Admin/BranchesManagement';
 
 const EmployeesRoutes = ({ user, isLoading }) => {
     if (isLoading) {
@@ -63,6 +64,7 @@ function App() {
             {/* Admin Routes */}
             <Route element={<AdminRoutes user={user} isLoading={isLoading} />}>
                 <Route path={ROUTES.ADMIN_ROUTES.dashboard} element={<Dashboard />} />
+                <Route path={ROUTES.ADMIN_ROUTES.branchesManagement} element={<BranchesManagement />} />
                 <Route path={ROUTES.ADMIN_ROUTES.menuManagement} element={<MenuManagement />} />
                 <Route path={ROUTES.ADMIN_ROUTES.orderManagement} element={<OrderManagement />} />
                 <Route path={ROUTES.ADMIN_ROUTES.employeeManagement} element={<EmployeeManagement />} />
