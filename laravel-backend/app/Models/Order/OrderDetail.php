@@ -35,7 +35,17 @@ class OrderDetail extends Model
         'done_at',
         'canceled_by_emp',
         'canceled_reason',
-        'canceled_at'
+        'canceled_at',
+        'waiting_at',
+        'prepared_by_emp',
+        'prepared_at',
+        'ready_by_emp',
+        'ready_at',
+        'served_by_emp',
+        'served_at',
+        'cus_phone_number',
+        'created_by_emp',
+
     ];
 
     protected $casts = [
@@ -57,6 +67,15 @@ class OrderDetail extends Model
         'canceled_by_emp' => 'string',
         'canceled_reason' => 'string',
         'canceled_at' => 'datetime',
+        'waiting_at' => 'string',
+        'prepared_by_emp' => 'string',
+        'prepared_at' => 'datetime',
+        'ready_by_emp' => 'string',
+        'ready_at' => 'datetime',
+        'served_by_emp' => 'string',
+        'served_at' => 'datetime',
+        'cus_phone_number' => 'string',
+        'created_by_emp' => 'string',
     ];
 
     public function product()

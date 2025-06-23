@@ -5,8 +5,8 @@ import { PlusOutlined, EditOutlined, EyeOutlined, PhoneOutlined, MessageOutlined
 import dayjs from 'dayjs';
 import 'dayjs/locale/vi';
 
-import BookingDetailModal from '~/components/Employee/Booking/BookingModal/BookingDetailModal';
-import BookingModal from '~/components/Employee/Booking/BookingModal';
+import BookingDetailModal from '~/components/Employees/Booking/BookingModal/BookingDetailModal';
+import BookingModal from '~/components/Employees/Booking/BookingModal';
 import { bookingList } from '~/apis/mockData';
 import { RESERVATION_STATUS } from '~/utils/constants';
 

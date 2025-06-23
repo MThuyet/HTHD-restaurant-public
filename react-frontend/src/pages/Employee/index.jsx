@@ -1,34 +1,22 @@
-import { NavLink, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 
-import Header from '~/components/Employee/Header';
+import Header from '~/components/Employees/Header';
 import { ROUTES } from '~/utils/routes';
 
 const items = [
     {
-        value: 'Table Management',
-        label: (
-            <NavLink className="font-[500]" to={ROUTES.EMPLOYEE_ROUTES.tableManagement}>
-                Quản lý bàn
-            </NavLink>
-        ),
+        value: ROUTES.EMPLOYEE_ROUTES.tableManagement,
+        label: 'Quản lý bàn',
         role: 'RECEPTIONIST',
     },
     {
-        value: 'Booking Management',
-        label: (
-            <NavLink className="font-[500]" to={ROUTES.EMPLOYEE_ROUTES.bookingManagement}>
-                Quản lý đặt bàn
-            </NavLink>
-        ),
+        value: ROUTES.EMPLOYEE_ROUTES.bookingManagement,
+        label: 'Quản lý đặt bàn',
         role: 'RECEPTIONIST',
     },
     {
-        value: 'Menu Management',
-        label: (
-            <NavLink className="font-[500]" to={ROUTES.EMPLOYEE_ROUTES.menuManagement}>
-                Quản lý menu
-            </NavLink>
-        ),
+        value: ROUTES.EMPLOYEE_ROUTES.menuManagement,
+        label: 'Quản lý menu',
         role: 'KITCHEN_STAFF',
     },
 ];
