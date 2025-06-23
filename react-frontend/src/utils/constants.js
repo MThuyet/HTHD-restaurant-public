@@ -33,35 +33,45 @@ export const RESERVATION_STATUS = {
     },
 };
 
+import tableEmpty from '~/assets/common/table--empty.webp';
+import tableMaintenance from '~/assets/common/table--maintenance.webp';
+import tableOccupied from '~/assets/common/table--occupied.webp';
+import tableReserved from '~/assets/common/table--reserved.webp';
+import tableCleaning from '~/assets/common/table--cleaning.webp';
 export const TABLE_STATUS = {
     EMPTY: {
         text: 'Bàn trống',
         color: 'text-darkGreen',
         border: 'border border-darkGreen',
         background: 'bg-whiteGreen',
+        image: tableEmpty,
     },
     CLEANING: {
         text: 'Đang dọn',
         color: 'text-darkYellow',
         border: 'border border-darkYellow',
         background: 'bg-whiteYellow',
+        image: tableCleaning,
     },
     OCCUPIED: {
         text: 'Đã đặt trước',
         color: 'text-darkBlue',
-        border: 'border border-[darkBlue]',
-        background: 'bg-[whiteBlue]',
+        border: 'border border-darkBlue',
+        background: 'bg-whiteBlue',
+        image: tableOccupied,
     },
     RESERVED: {
         text: 'Đang sử dụng',
         color: 'text-darkRed',
         border: 'border border-darkRed',
         background: 'bg-whiteRed',
+        image: tableReserved,
     },
     MAINTENANCE: {
         text: 'Đang bảo trì',
         color: 'text-darkPurple',
         border: 'border border-darkPurple',
         background: 'bg-whitePurple',
+        image: tableMaintenance,
     },
 };

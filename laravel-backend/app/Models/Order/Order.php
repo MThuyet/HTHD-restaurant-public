@@ -28,11 +28,9 @@ class Order extends Model
         'payment_method',
         'canceled_at',
         'canceled_reason',
-        'cus_phone_number',
         'res_code',
         'bra_code',
         'tab_code',
-        'created_by_emp',
         'updated_by_emp',
         'canceled_by_emp',
     ];
@@ -43,19 +41,12 @@ class Order extends Model
         'payment_method' => OrderPaymentMethod::class,
         'canceled_at' => 'datetime',
         'canceled_reason' => 'string',
-        'cus_phone_number' => 'string',
         'res_code' => 'string',
         'bra_code' => 'string',
         'tab_code' => 'string',
-        'created_by_emp' => 'string',
         'updated_by_emp' => 'string',
         'canceled_by_emp' => 'string',
     ];
-
-    public function customer()
-    {
-        return $this->belongsTo(Customer::class, 'cus_phone_number', 'phone_number');
-    }
 
     public function reservation()
     {
@@ -70,11 +61,6 @@ class Order extends Model
     public function table()
     {
         return $this->belongsTo(Table::class, 'tab_code', 'tab_code');
-    }
-
-    public function createdBy()
-    {
-        return $this->belongsTo(Employee::class, 'created_by_emp', 'emp_code');
     }
 
     public function updatedBy()
