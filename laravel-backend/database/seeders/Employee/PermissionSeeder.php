@@ -30,9 +30,19 @@ class PermissionSeeder extends Seeder
             ],
             [
                 'name' => 'Employee Booking',
-                'description' => 'Employee có quyền xác nhận quản lý booking',
+                'description' => 'Employee có quyền quản lý booking',
                 'route' => 'employee.booking'
-            ]
+            ],
+            [
+                'name' => 'Employee Table',
+                'description' => 'Employee có quyền quản lý bàn',
+                'route' => 'employee.table'
+            ],
+            [
+                'name' => 'Employee Menu',
+                'description' => 'Employee có quyền quản lý menu',
+                'route' => 'employee.menu'
+            ],
         ]);
     }
 }

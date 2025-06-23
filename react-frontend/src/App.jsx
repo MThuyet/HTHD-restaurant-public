@@ -1,5 +1,4 @@
 import { Route, Routes } from 'react-router-dom';
-import { Outlet } from 'react-router-dom';
 import Auth from './pages/Auth/Auth';
 import Errors from './pages/Errors';
 import Home from './pages/Customer/Home';
@@ -22,13 +21,9 @@ const EmployeesRoutes = ({ user, isLoading }) => {
     if (isLoading) {
         return <LoadingScreen />;
     }
-    if (user && user.permissions?.includes('employee.order')) {
-        return <Outlet />;
-    }
-    if (user && user.permissions?.includes('employee.booking')) {
+    if (user) {
         return <Employee />;
     }
-
     return <Errors title={403} content="Bạn không có quyền truy cập trang này" />;
 };
 
@@ -49,6 +44,8 @@ function App() {
         <Routes>
             {/* Public Routes */}
             <Route path="/" element={<Home />} />
+            <Route path={ROUTES.EMPLOYEE_ROUTES.order} element={<Order />} />
+
             {/* Auth */}
             <Route path={ROUTES.PUBLIC_ROUTES.login} element={<Auth />} />
             <Route path={ROUTES.PUBLIC_ROUTES.forgotPassword} element={<Auth />} />
@@ -56,7 +53,6 @@ function App() {
 
             {/* Employee Routes */}
             <Route element={<EmployeesRoutes user={user} isLoading={isLoading} />}>
-                <Route path={ROUTES.EMPLOYEE_ROUTES.order} element={<Order />} />
                 <Route path={ROUTES.EMPLOYEE_ROUTES.bookingManagement} element={<BookingManagement />} />
                 <Route path={ROUTES.EMPLOYEE_ROUTES.tableManagement} element={<TableManagement />} />
             </Route>
