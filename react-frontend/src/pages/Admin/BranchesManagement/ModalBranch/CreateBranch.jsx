@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import { createBranchAPI } from '~/apis';
 import { useState } from 'react';
 
-const CreateBranch = ({ isOpen, setIsOpen, refetch }) => {
+const CreateBranch = ({ isOpen, setIsOpen, refreshTable }) => {
     const [form] = Form.useForm();
     const { message, notification } = App.useApp();
     const [isLoading, setIsLoading] = useState(false);
@@ -22,7 +22,7 @@ const CreateBranch = ({ isOpen, setIsOpen, refetch }) => {
             setIsLoading(true);
             await createBranchAPI(values);
             message.success('Tạo chi nhánh thành công!');
-            refetch();
+            refreshTable();
             form.resetFields();
             setIsOpen(false);
         } catch (error) {

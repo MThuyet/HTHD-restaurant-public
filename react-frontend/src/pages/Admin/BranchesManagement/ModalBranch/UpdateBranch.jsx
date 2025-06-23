@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { updateBranchAPI } from '~/apis';
 import isEqual from 'lodash/isEqual';
 
-const UpdateBranch = ({ isOpen, setIsOpen, refetch, data, setDataModalUpdateBranch }) => {
+const UpdateBranch = ({ isOpen, setIsOpen, refreshTable, data, setDataModalUpdateBranch }) => {
     const [form] = Form.useForm();
     const { message, notification } = App.useApp();
     const [isLoading, setIsLoading] = useState(false);
@@ -69,7 +69,7 @@ const UpdateBranch = ({ isOpen, setIsOpen, refetch, data, setDataModalUpdateBran
             const response = await updateBranchAPI(data?.bra_code, newData);
             setDataModalUpdateBranch(response.data);
             message.success('Cập nhật chi nhánh thành công!');
-            refetch();
+            refreshTable();
         } catch (error) {
             notification.error({
                 message: error.response.data.message,
