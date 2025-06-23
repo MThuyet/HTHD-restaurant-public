@@ -41,6 +41,8 @@ const handleUserMenuClick = ({ key }) => {
 };
 
 const Header = ({ navTabs }) => {
+    console.log(navTabs);
+
     const navigate = useNavigate();
 
     const handleActive = (value) => {

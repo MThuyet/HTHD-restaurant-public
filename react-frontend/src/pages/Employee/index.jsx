@@ -1,5 +1,7 @@
+import { useContext } from 'react';
 import { Outlet } from 'react-router-dom';
 
+import UserContext from '~/contexts/UserContext';
 import Header from '~/components/Employees/Header';
 import { ROUTES } from '~/utils/routes';
 
@@ -7,23 +9,30 @@ const items = [
     {
         value: ROUTES.EMPLOYEE_ROUTES.tableManagement,
         label: 'Quản lý bàn',
-        role: 'RECEPTIONIST',
+        permission: 'employee.table',
     },
     {
         value: ROUTES.EMPLOYEE_ROUTES.bookingManagement,
         label: 'Quản lý đặt bàn',
-        role: 'RECEPTIONIST',
+        permission: 'employee.booking',
     },
     {
         value: ROUTES.EMPLOYEE_ROUTES.menuManagement,
         label: 'Quản lý menu',
-        role: 'KITCHEN_STAFF',
+        permission: 'employee.menu',
+    },
+    {
+        value: ROUTES.EMPLOYEE_ROUTES.kitchenOrders,
+        label: 'Order của bếp',
+        permission: 'employee.kitchen',
     },
 ];
 
 const index = () => {
-    const role = 'RECEPTIONIST';
-    const navTabs = items.filter((item) => item.role === role).map((item) => item);
+    const user = useContext(UserContext).user;
+    const userPermissions = user?.permissions;
+
+    const navTabs = items.filter((item) => userPermissions.includes(item.permission)).map((item) => item);
 
     return (
         <div className="bg-bgBlue">

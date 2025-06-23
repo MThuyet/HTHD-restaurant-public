@@ -12,6 +12,7 @@ export const ROUTES = {
         bookingManagement: '/:branch_name/booking-management',
         tableManagement: '/:branch_name/table-management',
         menuManagement: '/:branch_name/menu-management',
+        kitchenOrders: '/:branch_name/kitchen-orders',
     },
 
     // Admin Routes

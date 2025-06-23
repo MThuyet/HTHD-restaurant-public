@@ -18,15 +18,23 @@ class PositionPermissionMappingSeeder extends Seeder
             ['pos_code' => 'POS001', 'per_id' => 2, 'created_at' => now(), 'updated_at' => now()],
             ['pos_code' => 'POS001', 'per_id' => 3, 'created_at' => now(), 'updated_at' => now()],
             ['pos_code' => 'POS001', 'per_id' => 4, 'created_at' => now(), 'updated_at' => now()],
+            ['pos_code' => 'POS001', 'per_id' => 5, 'created_at' => now(), 'updated_at' => now()],
+            ['pos_code' => 'POS001', 'per_id' => 6, 'created_at' => now(), 'updated_at' => now()],
 
-            // Đầu Bếp (POS003) → employee.kitchen (id 3)
+            // Đầu Bếp (POS003) → employee.kitchen (id 3,6)
             ['pos_code' => 'POS003', 'per_id' => 3, 'created_at' => now(), 'updated_at' => now()],
+            ['pos_code' => 'POS003', 'per_id' => 6, 'created_at' => now(), 'updated_at' => now()],
 
             // Nhân Viên Phục Vụ (POS004) → employee.order (id 2)
             ['pos_code' => 'POS004', 'per_id' => 2, 'created_at' => now(), 'updated_at' => now()],
+            ['pos_code' => 'POS004', 'per_id' => 5, 'created_at' => now(), 'updated_at' => now()],
+
 
             // Nhân Viên Tiếp Tân (POS006) → employee.booking (id 4)
             ['pos_code' => 'POS006', 'per_id' => 4, 'created_at' => now(), 'updated_at' => now()],
+            ['pos_code' => 'POS006', 'per_id' => 5, 'created_at' => now(), 'updated_at' => now()],
+            ['pos_code' => 'POS006', 'per_id' => 6, 'created_at' => now(), 'updated_at' => now()],
+
         ]);
 
     }
