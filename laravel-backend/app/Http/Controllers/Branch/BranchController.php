@@ -14,14 +14,17 @@ class BranchController extends Controller
     public function index(Request $request)
     {
         // Lấy tham số phân trang từ url
-        // số chi nhánh trên 1 trang (LIMIT = per_page)
         $perPage = $request->query('per_page', 5); // Mặc định 5
         $sortBy = $request->query('sort_by', 'created_at');
         $sortOrder = $request->query('sort_order', 'desc');
-        // về trang hiện tại, tham số này được function paginate tự động kiểm tra dựa vào params page trong url
-        // Mặc định localhost:8000/api/branches sẽ tương tự với localhost:8000/api/branches?page=1&per_page=1
 
-        $branches = Branch::select(
+        // Lấy các tham số tìm kiếm
+        $braName = $request->query('bra_name');
+        $address = $request->query('address');
+        $email = $request->query('email');
+        $active = $request->query('active');
+
+        $branchesQuery = Branch::select(
             'bra_code',
             'bra_name',
             'phone_number1',
@@ -36,7 +39,23 @@ class BranchController extends Controller
             'created_at',
             'updated_at'
         )
-            ->whereNull('deleted_at') // Chỉ lấy chi nhánh chưa bị xóa
+            ->whereNull('deleted_at'); // Chỉ lấy chi nhánh chưa bị xóa
+
+        // Thêm điều kiện tìm kiếm nếu có
+        if ($braName) {
+            $branchesQuery->where('bra_name', 'like', "%$braName%");
+        }
+        if ($address) {
+            $branchesQuery->where('address', 'like', "%$address%");
+        }
+        if ($email) {
+            $branchesQuery->where('email', 'like', "%$email%");
+        }
+        if (!is_null($active)) {
+            $branchesQuery->where('active', $active);
+        }
+
+        $branches = $branchesQuery
             ->orderBy($sortBy, $sortOrder)
             ->paginate($perPage);
 

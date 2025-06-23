@@ -1,9 +1,8 @@
 /* eslint-disable no-unused-vars */
 import { PlusOutlined, EditOutlined, DeleteOutlined, EyeOutlined } from '@ant-design/icons';
 import { ProTable } from '@ant-design/pro-components';
-import { useQuery } from '@tanstack/react-query';
 import { App, Button, Popconfirm, Tag, Tooltip } from 'antd';
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { deleteBranchAPI, fetchListBranchAPI } from '~/apis';
 import dayjs from 'dayjs';
 import ViewDetailBranch from './ModalBranch/ViewDetailBranch';
@@ -14,25 +13,18 @@ import UpdateBranch from './ModalBranch/UpdateBranch';
 const BranchesManagement = () => {
     const { message, notification } = App.useApp();
 
-    // phân trang
-    const [queryParams, setQueryParams] = useState('page=1');
+    const actionRef = useRef(null);
 
-    // fetch dữ liệu từ Back-end
-    const fetchBranches = useQuery({
-        queryKey: ['branches', queryParams],
-        queryFn: async () => await fetchListBranchAPI(queryParams),
-        staleTime: 300000, // Dữ liệu trong 5 phút sẽ là mới
-        cacheTime: 600000, // Thời gian cache là 10 phút
-        refetchOnWindowFocus: false, // Không refetch khi focus vào cửa sổ
-        refetchOnMount: false, // Chỉ fetch một lần khi mount
-        keepPreviousData: true, // Giữ dữ liệu cũ khi chuyển trang để tránh UI nhấp nháy
+    const refreshTable = () => {
+        actionRef.current?.reload();
+    };
+
+    // tham số phân trang
+    const [pagination, setPagination] = useState({
+        pageSize: 5,
+        current: 1,
+        total: 0,
     });
-
-    // dữ liệu nhận về từ api
-    const { data: branches, isLoading, refetch } = fetchBranches;
-
-    // list data truyền vô ProTable
-    const memoizedDataSource = useMemo(() => branches?.data?.results || [], [branches?.data?.results]);
 
     // modal view details
     const [isOpenModalDetails, setIsOpenModalDetails] = useState(false);
@@ -91,7 +83,6 @@ const BranchesManagement = () => {
                                 try {
                                     await deleteBranchAPI(entity.bra_code);
                                     message.success('Xóa chi nhánh thành công!');
-                                    refetch();
                                 } catch (error) {
                                     notification.error({
                                         message: error.response.data.message,
@@ -115,7 +106,7 @@ const BranchesManagement = () => {
                 </div>
             );
         };
-    }, [message, notification, refetch]);
+    }, [message, notification]);
 
     // các trường hiển thị
     const memoizedColumns = useMemo(() => {
@@ -154,10 +145,21 @@ const BranchesManagement = () => {
             {
                 title: 'Trạng thái hoạt động',
                 dataIndex: 'active',
-                render: (active) =>
-                    active ? <Tag color="green">Hoạt động</Tag> : <Tag color="red">Không hoạt động</Tag>,
+                render: (dom, entity, index, action, schema) => {
+                    return entity.active ? <Tag color="green">Hoạt động</Tag> : <Tag color="red">Không hoạt động</Tag>;
+                },
                 fieldProps: {
                     placeholder: 'Chọn trạng thái',
+                    optionRender: (item) => (
+                        <span style={{ color: item.value == 1 ? 'green' : 'red' }}>{item.label}</span>
+                    ),
+                    style: ({ value }) => ({
+                        color: value == 1 ? 'green' : 'red',
+                    }),
+                },
+                valueEnum: {
+                    1: { text: 'Hoạt động', status: 'Success' },
+                    0: { text: 'Không hoạt động', status: 'Error' },
                 },
             },
             {
@@ -179,26 +181,52 @@ const BranchesManagement = () => {
     return (
         <>
             <ProTable
-                locale={{
-                    emptyText: isLoading ? 'Đang tải dữ liệu' : '',
-                }}
                 bordered
-                loading={isLoading}
                 className="flex flex-col w-full"
                 columns={memoizedColumns}
-                dataSource={memoizedDataSource}
+                actionRef={actionRef}
+                request={async (params, sort, filter) => {
+                    // Xử lý params để tạo query string
+                    let searchParams = `page=${params.current || 1}&per_page=${params.pageSize || 5}`;
+                    if (params.bra_name) searchParams += `&bra_name=${params.bra_name}`;
+                    if (params.address) searchParams += `&address=${params.address}`;
+                    if (params.phone_number1) searchParams += `&phone_number1=${params.phone_number1}`;
+                    if (params.email) searchParams += `&email=${params.email}`;
+                    if (params.active !== undefined) searchParams += `&active=${params.active}`;
+
+                    const res = await fetchListBranchAPI(searchParams);
+
+                    setPagination({
+                        pageSize: res.data.per_page,
+                        current: res.data.current_page,
+                        total: res.data.total,
+                    });
+
+                    return {
+                        data: res.data.results,
+                        total: res.data.total,
+                    };
+                }}
                 rowKey="bra_code"
                 search={{ resetText: 'Làm mới', labelWidth: 'auto' }}
                 options={{ fullScreen: true, reload: false }}
-                pagination={{
-                    total: branches?.data?.total,
-                    pageSize: branches?.data?.per_page,
-                    onChange: (page) => {
-                        setQueryParams(`page=${page}`);
-                    },
-                }}
                 dateFormatter="string"
                 headerTitle="Danh sách chi nhánh"
+                pagination={{
+                    pageSize: pagination.pageSize,
+                    current: pagination.current,
+                    total: pagination.total,
+                    showSizeChanger: true,
+                    pageSizeOptions: [5, 10, 15, 20],
+                    showTotal(total, range) {
+                        return (
+                            <div>
+                                {' '}
+                                {range[0]} - {range[1]} / {total} Chi nhánh
+                            </div>
+                        );
+                    },
+                }}
                 toolBarRender={() => [
                     <Button
                         onClick={() => {
@@ -219,14 +247,18 @@ const BranchesManagement = () => {
                 onCancel={() => setIsOpenModalDetails(false)}
             />
 
-            <CreateBranch isOpen={isOpenModalCreateBranch} setIsOpen={setIsOpenModalCreateBranch} refetch={refetch} />
+            <CreateBranch
+                isOpen={isOpenModalCreateBranch}
+                setIsOpen={setIsOpenModalCreateBranch}
+                refreshTable={refreshTable}
+            />
 
             <UpdateBranch
                 isOpen={isOpenModalUpdateBranch}
                 data={dataModalUpdateBranch}
                 setDataModalUpdateBranch={setDataModalUpdateBranch}
                 setIsOpen={setIsOpenModalUpdateBranch}
-                refetch={refetch}
+                refreshTable={refreshTable}
             />
         </>
     );
