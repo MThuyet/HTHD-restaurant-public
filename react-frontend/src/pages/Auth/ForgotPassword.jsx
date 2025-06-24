@@ -2,7 +2,7 @@ import { Input, Typography } from 'antd';
 import { PhoneOutlined, LeftOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 
-import { ROUTES } from '~/utils/routes';
+import ROUTES from '~/config/routes';
 
 const ForgotPassword = () => {
     const onChange = (text) => {
@@ -59,7 +59,7 @@ const ForgotPassword = () => {
 
             {/* Nút */}
             <div className="flex flex-wrap gap-4 mt-4">
-                <Link to={ROUTES.PUBLIC_ROUTES.login}>
+                <Link to={ROUTES.login}>
                     <button
                         className="bg-[#F3F3F3] text-black font-bold py-3 px-6 rounded-lg border-none hover:opacity-85 whitespace-nowrap"
                         style={{

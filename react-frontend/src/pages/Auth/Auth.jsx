@@ -10,7 +10,7 @@ import chefImage2 from '~/assets/auth/imgs/chef/chef2.webp';
 import chefImage3 from '~/assets/auth/imgs/chef/chef3.webp';
 import chefImage4 from '~/assets/auth/imgs/chef/chef4.webp';
 import { Typography, Carousel } from 'antd';
-import { ROUTES } from '~/utils/routes';
+import ROUTES from '~/config/routes';
 import { useContext } from 'react';
 import UserContext from '~/contexts/UserContext';
 
@@ -18,21 +18,19 @@ const Auth = () => {
     const location = useLocation();
     const { user } = useContext(UserContext);
 
-    const isLoginPage = location.pathname === ROUTES.PUBLIC_ROUTES.login;
-    const isForgotPasswordPage = location.pathname === ROUTES.PUBLIC_ROUTES.forgotPassword;
-    const isResetPasswordPage = location.pathname === ROUTES.PUBLIC_ROUTES.resetPassword;
+    const isLoginPage = location.pathname === ROUTES.login;
+    const isForgotPasswordPage = location.pathname === ROUTES.forgotPassword;
+    const isResetPasswordPage = location.pathname === ROUTES.resetPassword;
 
     if (user) {
-        console.log(user);
-
         if (user.permissions.includes('admin')) {
-            return <Navigate to={ROUTES.ADMIN_ROUTES.dashboard} replace />;
+            return <Navigate to={ROUTES.admDashboard} replace />;
         } else if (user.permissions.includes('employee.order')) {
-            return <Navigate to={ROUTES.EMPLOYEE_ROUTES.order} replace />;
+            return <Navigate to={ROUTES.order} replace />;
         } else if (user.permissions.includes('employee.kitchen')) {
-            return <Navigate to="/" replace />;
+            return <Navigate to={ROUTES.empKitchenOrderManagement} replace />;
         } else if (user.permissions.includes('employee.booking')) {
-            return <Navigate to={ROUTES.EMPLOYEE_ROUTES.tableManagement} replace />;
+            return <Navigate to={ROUTES.empBookingManagement} replace />;
         }
     }
 

@@ -1,74 +1,66 @@
+import { useContext, Fragment } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import Auth from './pages/Auth/Auth';
+
 import Errors from './pages/Errors';
-import Home from './pages/Customer/Home';
-import Order from './pages/Common/Order';
-import BookingManagement from './pages/Employee/BookingManagement';
-import TableManagement from './pages/Employee/TableManagement';
-import Admin from './pages/Admin';
-import Employee from './pages/Employee';
-import Dashboard from './pages/Admin/Dashboard';
-import MenuManagement from './pages/Admin/MenuManagement';
-import OrderManagement from './pages/Admin/OrderManagement';
-import EmployeeManagement from './pages/Admin/EmployeeManagement';
-import { ROUTES } from './utils/routes';
-import { useContext } from 'react';
 import UserContext from './contexts/UserContext';
 import LoadingScreen from './components/Commons/LoadingScreen';
-import BranchesManagement from './pages/Admin/BranchesManagement';
-
-const EmployeesRoutes = ({ user, isLoading }) => {
-    if (isLoading) {
-        return <LoadingScreen />;
-    }
-    if (user) {
-        return <Employee />;
-    }
-    return <Errors title={403} content="Bạn không có quyền truy cập trang này" />;
-};
-
-const AdminRoutes = ({ user, isLoading }) => {
-    if (isLoading) {
-        return <LoadingScreen />;
-    }
-    if (user && user.permissions?.includes('admin')) {
-        return <Admin />;
-    }
-    return <Errors title={403} content="Bạn không có quyền truy cập trang này" />;
-};
+import { publicRoutes, privateRoutes } from './routes';
 
 function App() {
     const { user, isLoading } = useContext(UserContext);
+    if (isLoading) {
+        return <LoadingScreen />;
+    }
 
     return (
-        <Routes>
-            {/* Public Routes */}
-            <Route path="/" element={<Home />} />
-            <Route path={ROUTES.EMPLOYEE_ROUTES.order} element={<Order />} />
+        <div id="App">
+            <Routes>
+                {publicRoutes.map((route, index) => {
+                    const Page = route.component;
 
-            {/* Auth */}
-            <Route path={ROUTES.PUBLIC_ROUTES.login} element={<Auth />} />
-            <Route path={ROUTES.PUBLIC_ROUTES.forgotPassword} element={<Auth />} />
-            <Route path={ROUTES.PUBLIC_ROUTES.resetPassword} element={<Auth />} />
+                    let Layout = route.layout ? route.layout : Fragment;
 
-            {/* Employee Routes */}
-            <Route element={<EmployeesRoutes user={user} isLoading={isLoading} />}>
-                <Route path={ROUTES.EMPLOYEE_ROUTES.bookingManagement} element={<BookingManagement />} />
-                <Route path={ROUTES.EMPLOYEE_ROUTES.tableManagement} element={<TableManagement />} />
-            </Route>
+                    return (
+                        <Route
+                            key={index}
+                            path={route.path}
+                            element={
+                                <Layout>
+                                    <Page />
+                                </Layout>
+                            }
+                        />
+                    );
+                })}
 
-            {/* Admin Routes */}
-            <Route element={<AdminRoutes user={user} isLoading={isLoading} />}>
-                <Route path={ROUTES.ADMIN_ROUTES.dashboard} element={<Dashboard />} />
-                <Route path={ROUTES.ADMIN_ROUTES.branchesManagement} element={<BranchesManagement />} />
-                <Route path={ROUTES.ADMIN_ROUTES.menuManagement} element={<MenuManagement />} />
-                <Route path={ROUTES.ADMIN_ROUTES.orderManagement} element={<OrderManagement />} />
-                <Route path={ROUTES.ADMIN_ROUTES.employeeManagement} element={<EmployeeManagement />} />
-            </Route>
+                {privateRoutes.map((route, index) => {
+                    if (!user || !user.permissions.includes(route.permission)) {
+                        return (
+                            <Route
+                                key={index}
+                                path={route.path}
+                                element={<Errors title={403} content="Bạn không có quyền truy cập trang này" />}
+                            />
+                        );
+                    }
+                    const Page = route.component;
 
-            {/* Error */}
-            <Route path="*" element={<Errors />} replace />
-        </Routes>
+                    let Layout = route.layout ? route.layout : Fragment;
+
+                    return (
+                        <Route
+                            key={index}
+                            path={route.path}
+                            element={
+                                <Layout>
+                                    <Page />
+                                </Layout>
+                            }
+                        />
+                    );
+                })}
+            </Routes>
+        </div>
     );
 }
 

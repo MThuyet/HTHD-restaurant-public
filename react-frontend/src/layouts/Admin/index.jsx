@@ -14,53 +14,53 @@ import {
 import { Button, ConfigProvider, Layout, Menu, Typography, Avatar, Dropdown } from 'antd';
 import viVN from 'antd/locale/vi_VN';
 import logo from '~/assets/common/logo.webp';
-import { ROUTES } from '~/utils/routes';
+import ROUTES from '~/config/routes';
 
 const { Header, Sider, Content } = Layout;
 
 // danh sách menu sidebar
 const items = [
     {
-        key: ROUTES.ADMIN_ROUTES.dashboard,
+        key: ROUTES.admDashboard,
         icon: <AppstoreOutlined />,
         label: (
-            <Link className="font-[500]" to={ROUTES.ADMIN_ROUTES.dashboard}>
+            <Link className="font-[500]" to={ROUTES.admDashboard}>
                 Bảng điều khiển
             </Link>
         ),
     },
     {
-        key: ROUTES.ADMIN_ROUTES.branchesManagement,
+        key: ROUTES.admBranchesManagement,
         icon: <BranchesOutlined />,
         label: (
-            <Link className="font-[500]" to={ROUTES.ADMIN_ROUTES.branchesManagement}>
+            <Link className="font-[500]" to={ROUTES.admBranchesManagement}>
                 Quản lý chi nhánh
             </Link>
         ),
     },
     {
-        key: ROUTES.ADMIN_ROUTES.employeeManagement,
+        key: ROUTES.admEmployeeManagement,
         icon: <UserOutlined />,
         label: (
-            <Link className="font-[500]" to={ROUTES.ADMIN_ROUTES.employeeManagement}>
+            <Link className="font-[500]" to={ROUTES.admEmployeeManagement}>
                 Quản lý nhân viên
             </Link>
         ),
     },
     {
-        key: ROUTES.ADMIN_ROUTES.menuManagement,
+        key: ROUTES.admMenuManagement,
         icon: <UnorderedListOutlined />,
         label: (
-            <Link className="font-[500]" to={ROUTES.ADMIN_ROUTES.menuManagement}>
+            <Link className="font-[500]" to={ROUTES.admMenuManagement}>
                 Quản lý menu
             </Link>
         ),
     },
     {
-        key: ROUTES.ADMIN_ROUTES.orderManagement,
+        key: ROUTES.admOrderManagement,
         icon: <DollarOutlined />,
         label: (
-            <Link className="font-[500]" to={ROUTES.ADMIN_ROUTES.orderManagement}>
+            <Link className="font-[500]" to={ROUTES.admOrderManagement}>
                 Quản lý đơn hàng
             </Link>
         ),
@@ -108,7 +108,7 @@ const configTheme = {
     },
 };
 
-const Admin = () => {
+const AdminLayout = ({ children }) => {
     const location = useLocation();
 
     const [collapsed, setCollapsed] = useState(false);
@@ -194,13 +194,11 @@ const Admin = () => {
                             </div>
                         </Dropdown>
                     </Header>
-                    <Content className="!bg-[#F1F5FB] rounded-md overflow-auto scrollbar-none !p-2">
-                        <Outlet />
-                    </Content>
+                    <Content className="!bg-[#F1F5FB] rounded-md overflow-auto scrollbar-none !p-2">{children}</Content>
                 </Layout>
             </Layout>
         </ConfigProvider>
     );
 };
 
-export default Admin;
+export default AdminLayout;

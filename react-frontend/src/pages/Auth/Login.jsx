@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { Controller, useForm } from 'react-hook-form';
 import { App, Input } from 'antd';
 import { UserOutlined, LockOutlined, EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
-import { ROUTES } from '~/utils/routes';
-import { Controller, useForm } from 'react-hook-form';
+
+import ROUTES from '~/config/routes';
 import { VALIDATE_PASSWORD, VALIDATE_USERNAME } from '~/utils/formatter';
 import FormFieldError from '~/components/Employees/FormFieldError';
 import { loginAPI } from '~/apis';
@@ -87,7 +88,7 @@ const Login = () => {
                 >
                     Đăng nhập
                 </button>
-                <Link to={ROUTES.PUBLIC_ROUTES.forgotPassword}>
+                <Link to={ROUTES.forgotPassword}>
                     <button
                         className="bg-[#F3F3F3] text-nowrap text-black font-bold py-3 sm:px-10 px-6 rounded-lg border-none hover:opacity-85"
                         style={{

@@ -103,7 +103,6 @@ const TableManagement = () => {
                     ))}
                 </div>
             </div>
-            <FloatButton.BackTop visibilityHeight={0} duration={0} type="primary" />
             <div className="fixed bottom-2 left-[50%] translate-x-[-50%] flex items-center gap-2 p-2 rounded-lg text-nowrap bg-[#333] text-[16px] text-white shadow-lg">
                 Chế độ hiển thị:
                 <Segmented

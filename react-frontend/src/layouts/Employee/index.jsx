@@ -1,34 +1,34 @@
 import { useContext } from 'react';
-import { Outlet } from 'react-router-dom';
+import { FloatButton } from 'antd';
 
 import UserContext from '~/contexts/UserContext';
-import Header from '~/components/Employees/Header';
-import { ROUTES } from '~/utils/routes';
+import Header from './Header';
+import ROUTES from '~/config/routes';
 
 const items = [
     {
-        value: ROUTES.EMPLOYEE_ROUTES.tableManagement,
+        value: ROUTES.empTableManagement,
         label: 'Quản lý bàn',
         permission: 'employee.table',
     },
     {
-        value: ROUTES.EMPLOYEE_ROUTES.bookingManagement,
+        value: ROUTES.empBookingManagement,
         label: 'Quản lý đặt bàn',
         permission: 'employee.booking',
     },
     {
-        value: ROUTES.EMPLOYEE_ROUTES.menuManagement,
-        label: 'Quản lý menu',
-        permission: 'employee.menu',
-    },
-    {
-        value: ROUTES.EMPLOYEE_ROUTES.kitchenOrders,
+        value: ROUTES.empKitchenOrders,
         label: 'Order của bếp',
         permission: 'employee.kitchen',
     },
+    {
+        value: ROUTES.empMenuManagement,
+        label: 'Quản lý menu',
+        permission: 'employee.menu',
+    },
 ];
 
-const index = () => {
+const EmployeeLayout = ({ children }) => {
     const user = useContext(UserContext).user;
     const userPermissions = user?.permissions;
 
@@ -38,10 +38,11 @@ const index = () => {
         <div className="bg-bgBlue">
             <Header navTabs={navTabs}></Header>
             <main className="p-4">
-                <Outlet />
+                {children}
+                <FloatButton.BackTop visibilityHeight={0} duration={0} type="primary" />
             </main>
         </div>
     );
 };
 
-export default index;
+export default EmployeeLayout;
