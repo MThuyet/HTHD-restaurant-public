@@ -6,6 +6,7 @@ import { FaPlus } from 'react-icons/fa';
 import ProductDetailsModal from '../Modal/ProductDetailsModal';
 import { useState } from 'react';
 import CustomOrderModal from '~/components/Commons/Modal/CustomOrderModal';
+import { isTablet } from 'react-device-detect';
 
 const Product = ({ product, isOrder = false }) => {
     const [isOpenDetails, setIsOpenDetails] = useState(false);
@@ -52,12 +53,16 @@ const Product = ({ product, isOrder = false }) => {
                         </div>
                     </div>
 
-                    <div className={`mt-1 text-[11px] font-[500] ${isOrder ? 'text-[#808080]' : '!text-white'}`}>
+                    <div
+                        className={`mt-1 text-[11px] line-clamp-2 font-[500] ${
+                            isOrder ? 'text-[#808080]' : '!text-white'
+                        }`}
+                    >
                         {product.description}
                     </div>
                 </div>
 
-                <div className="flex items-center justify-between mt-2 flex-wrap ">
+                <div className="flex sm:items-center justify-between mt-2 sm:flex-row flex-col">
                     <div className="text-primary flex gap-[1px] sm:mb-0 mb-2">
                         <span className="text-[10px] font-[500] underline">đ</span>
                         <p className="font-bold text-xs">{formatPrice(product.price)}</p>
@@ -66,7 +71,9 @@ const Product = ({ product, isOrder = false }) => {
                     {isOrder && (
                         <div className="flex sm:gap-1 gap-4 text-xs">
                             <button
-                                className="flex items-center gap-2 font-[500] !text-white bg-[#333333] !px-4 !py-1 rounded-md"
+                                className={`flex items-center gap-2 font-[500] !text-white bg-[#333333] ${
+                                    isTablet ? '!px-2' : '!px-4'
+                                } !py-1 rounded-md`}
                                 style={{ border: '2px solid #333333' }}
                             >
                                 <FaPlus /> Thêm
