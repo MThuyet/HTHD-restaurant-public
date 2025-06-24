@@ -7,7 +7,7 @@ import InputSearchMenu from '~/pages/Common/Order/InputSearchMenu';
 
 const Order = () => {
     return (
-        <div className="flex tablet-container overflow-hidden h-screen">
+        <div className="flex overflow-hidden h-[100dvh]">
             <div className="w-[70%] sm:flex hidden flex-col gap-3 bg-bgBlue px-3 py-2 ">
                 {/* Header*/}
                 <Header />

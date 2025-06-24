@@ -362,6 +362,28 @@ export const currentSelectedItem = [
             },
         ],
     },
+    {
+        id: 4,
+        productId: 5,
+        name: 'Mực chiên giòn',
+        price: 220000,
+        quantity: 1,
+        note: 'Giòn nhiều',
+        options: [
+            {
+                type: 'Nước chấm',
+                items: [{ name: 'Sốt me', quantity: 1, price: 15000 }],
+            },
+            {
+                type: 'Cách chế biến',
+                items: [{ name: 'Chiên giòn' }],
+            },
+            {
+                type: 'Độ cay',
+                items: [{ name: 'Vừa' }],
+            },
+        ],
+    },
 ];
 
 // Các món đã đặt, có trạng thái
@@ -551,13 +573,41 @@ export const bookingList = [
 ];
 
 export const tableList = [
-    { flo_name: 1, area_name: 'A', tab_code: '1', tab_name: '1', status: 'EMPTY', capacity: 4 },
-    { flo_name: 1, area_name: 'A', tab_code: '2', tab_name: '2', status: 'OCCUPIED', capacity: 4 },
-    { flo_name: 1, area_name: 'A', tab_code: '3', tab_name: '3', status: 'RESERVED', capacity: 4 },
-    { flo_name: 1, area_name: 'A', tab_code: '4', tab_name: '4', status: 'CLEANING', capacity: 4 },
-    { flo_name: 1, area_name: 'A', tab_code: '5', tab_name: '5', status: 'MAINTENANCE', capacity: 4 },
-    { flo_name: 2, area_name: 'A', tab_code: '6', tab_name: '6', status: 'EMPTY', capacity: 4 },
-    { flo_name: 2, area_name: 'A', tab_code: '7', tab_name: '7', status: 'EMPTY', capacity: 4 },
-    { flo_name: 2, area_name: 'A', tab_code: '8', tab_name: '8', status: 'EMPTY', capacity: 4 },
-    { flo_name: 2, area_name: 'A', tab_code: '9', tab_name: '9', status: 'EMPTY', capacity: 4 },
+    { flo_code: 1, area_code: 'A', tab_code: '1', tab_name: '1', status: 'EMPTY', capacity: 4 },
+    { flo_code: 1, area_code: 'A', tab_code: '2', tab_name: '2', status: 'OCCUPIED', capacity: 4 },
+    { flo_code: 1, area_code: 'A', tab_code: '3', tab_name: '3', status: 'RESERVED', capacity: 4 },
+    { flo_code: 1, area_code: 'A', tab_code: '4', tab_name: '4', status: 'CLEANING', capacity: 4 },
+    { flo_code: 1, area_code: 'A', tab_code: '5', tab_name: '5', status: 'MAINTENANCE', capacity: 4 },
+    { flo_code: 2, area_code: 'A', tab_code: '6', tab_name: '6', status: 'EMPTY', capacity: 4 },
+    {
+        flo_code: 2,
+        area_code: 'A',
+        tab_code: '7',
+        tab_name: '7',
+        status: 'RESERVED',
+        completed_at: '2025-06-19T14:15:00',
+        capacity: 4,
+    },
+    {
+        flo_code: 2,
+        area_code: 'A',
+        tab_code: '8',
+        tab_name: '8',
+        status: 'RESERVED',
+        completed_at: '2025-06-19T12:30:00',
+        capacity: 4,
+    },
+    { flo_code: 2, area_code: 'A', tab_code: '9', tab_name: '9', status: 'EMPTY', capacity: 4 },
+];
+
+export const floorList = [
+    { flo_code: 1, flo_name: 1 },
+    { flo_code: 2, flo_name: 2 },
+    { flo_code: 3, flo_name: 3 },
+];
+
+export const areaList = [
+    { area_code: 1, area_name: 'A' },
+    { area_code: 2, area_name: 'B' },
+    { area_code: 3, area_name: 'C' },
 ];

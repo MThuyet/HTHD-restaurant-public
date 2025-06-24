@@ -1,7 +1,7 @@
 import { Tabs } from 'antd';
 import AlreadyOrdered from './OrderList/AlreadyOrdered';
 import CurrentSelectedOrder from './OrderList/CurrentSelectedOrder';
-import { isMobile } from 'react-device-detect';
+import { isDesktop, isTablet } from 'react-device-detect';
 import Header from '~/pages/Common/Order/Header';
 import InputSearchMenu from '~/pages/Common/Order/InputSearchMenu';
 import OrderListMobile from './OrderList/OrderListMobile';
@@ -43,14 +43,14 @@ const OrderSideBar = ({ currentSelectedItem, alreadyOrdered }) => {
             },
         ];
 
-        if (isMobile) {
+        if (!isTablet && !isDesktop) {
             return [
                 baseItems[0],
                 {
                     key: '3',
                     label: (
                         <div className="flex items-center">
-                            <span className=" font-[500]">Menu</span>
+                            <span className="font-[500]">Menu</span>
                         </div>
                     ),
                     children: <OrderListMobile />,
@@ -63,18 +63,26 @@ const OrderSideBar = ({ currentSelectedItem, alreadyOrdered }) => {
     };
 
     return (
-        <div className={isMobile ? 'bg-bgBlue' : ''}>
-            {isMobile && <Header />}
-            {isMobile && (
-                <div className="p-2">
+        <div className={isTablet || isDesktop ? '' : 'bg-bgBlue'}>
+            {isTablet || isDesktop ? null : <Header />}
+            {isTablet || isDesktop ? null : (
+                <div className="px-2 mb-2">
                     <InputSearchMenu />
                 </div>
             )}
+
             <div className="flex flex-col h-full">
-                {!isMobile && (
-                    <div className="flex items-center justify-between sm:p-3 p-2 border-b-2 text-base">
+                {isTablet || isDesktop ? (
+                    <div className="flex bg-white items-center justify-between sm:p-3 p-2 border-b-2 text-base">
                         <span className="font-bold">Đặt Món</span>
                         {!isEmpty() && <span className="cursor-pointer text-primary font-[500]">Xóa tất cả</span>}
+                    </div>
+                ) : (
+                    <div className="px-2">
+                        <div className="flex bg-white rounded-lg items-center justify-between px-2 py-3 border-b-2 text-base">
+                            <span className="font-bold">Đặt Món</span>
+                            {!isEmpty() && <span className="cursor-pointer text-primary font-[500]">Xóa tất cả</span>}
+                        </div>
                     </div>
                 )}
 
@@ -88,12 +96,12 @@ const OrderSideBar = ({ currentSelectedItem, alreadyOrdered }) => {
                             defaultActiveKey="1"
                             items={getItems()}
                             onChange={onChange}
-                            className={isMobile ? '!p-2 rounded-lg' : 'h-full flex flex-col'}
+                            className={isTablet || isDesktop ? 'h-full flex flex-col' : '!p-2 rounded-lg'}
                             tabBarStyle={{
                                 overflow: 'hidden',
-                                padding: isMobile ? '0 8px' : '0 12px',
-                                backgroundColor: isMobile ? 'white' : '',
-                                borderRadius: isMobile ? '12px' : '',
+                                padding: isTablet || isDesktop ? '0 12px' : '0 8px',
+                                backgroundColor: isTablet || isDesktop ? '' : 'white',
+                                borderRadius: isTablet || isDesktop ? '' : '12px',
                             }}
                         />
                     )}

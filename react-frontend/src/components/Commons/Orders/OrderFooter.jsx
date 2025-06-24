@@ -4,7 +4,7 @@ import { formatPrice } from '~/utils/formatter';
 
 const OrderFooter = ({ totalPrice = 230000, isOrdered = true }) => {
     return (
-        <div className="border-t p-3 bg-white w-full z-10 ">
+        <div className="border-t p-3 bg-white w-full">
             {isOrdered && <Input.TextArea placeholder="Ghi chú chung" className="mb-4" rows={2} />}
 
             <div className="flex items-center justify-between mb-4">
@@ -26,7 +26,9 @@ const OrderFooter = ({ totalPrice = 230000, isOrdered = true }) => {
                 </Button>
             )}
 
-            <div className="text-center text-xs text-gray-500 mt-4">* Bạn có thể đặt thêm món bất kỳ lúc nào</div>
+            {!isOrdered && (
+                <div className="text-center text-xs text-gray-500 mt-4">* Bạn có thể đặt thêm món bất kỳ lúc nào</div>
+            )}
         </div>
     );
 };
