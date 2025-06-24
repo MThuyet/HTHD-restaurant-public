@@ -362,6 +362,28 @@ export const currentSelectedItem = [
             },
         ],
     },
+    {
+        id: 4,
+        productId: 5,
+        name: 'Mực chiên giòn',
+        price: 220000,
+        quantity: 1,
+        note: 'Giòn nhiều',
+        options: [
+            {
+                type: 'Nước chấm',
+                items: [{ name: 'Sốt me', quantity: 1, price: 15000 }],
+            },
+            {
+                type: 'Cách chế biến',
+                items: [{ name: 'Chiên giòn' }],
+            },
+            {
+                type: 'Độ cay',
+                items: [{ name: 'Vừa' }],
+            },
+        ],
+    },
 ];
 
 // Các món đã đặt, có trạng thái
