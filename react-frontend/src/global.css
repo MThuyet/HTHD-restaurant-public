@@ -203,3 +203,13 @@ input,
 .centered-tabs-nav-list .ant-tabs-nav-list {
     justify-content: center !important;
 }
+
+/* Tùy chỉnh màu cam cho SimpleBar */
+.simplebar-scrollbar.simplebar-visible:before {
+    background-color: #c3551a !important;
+    opacity: 1 !important;
+}
+
+.simplebar-scrollbar:before {
+    background-color: #c3551a !important;
+}
