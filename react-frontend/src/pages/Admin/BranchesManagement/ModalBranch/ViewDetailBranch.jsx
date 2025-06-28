@@ -52,7 +52,7 @@ const ViewDetailBranch = ({ data, isOpen, onCancel }) => {
         },
         {
             key: 'frame_code',
-            label: 'Mã khung giờ',
+            label: 'Iframe map code',
             children: data?.frame_code || 'Chưa cập nhật',
         },
         {

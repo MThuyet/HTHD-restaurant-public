@@ -7,6 +7,11 @@ export const loginAPI = async (data) => {
     return response.data;
 };
 
+export const logoutAPI = async () => {
+    const response = await authorizedAxiosInstance.post('/api/logout');
+    return response.data;
+};
+
 // fetch list employee
 export const fetchListEmployee = async (params) => {
     const response = await authorizedAxiosInstance.get(`/api/employees?${params}`);

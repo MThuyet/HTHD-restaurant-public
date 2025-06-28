@@ -36,6 +36,7 @@ export const UserProvider = ({ children }) => {
     const logoutUser = () => {
         // Xóa thông tin người dùng khỏi sessionStorage
         sessionStorage.removeItem('user');
+        sessionStorage.removeItem('token');
         setUser(null);
     };
 

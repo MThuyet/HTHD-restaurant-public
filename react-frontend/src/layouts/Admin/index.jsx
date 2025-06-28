@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Link, useLocation, Outlet } from 'react-router-dom';
+import { useContext, useState } from 'react';
+import { Link, useLocation, Outlet, useNavigate } from 'react-router-dom';
 import {
     MenuFoldOutlined,
     MenuUnfoldOutlined,
@@ -11,10 +11,12 @@ import {
     SettingOutlined,
     BranchesOutlined,
 } from '@ant-design/icons';
-import { Button, ConfigProvider, Layout, Menu, Typography, Avatar, Dropdown } from 'antd';
+import { Button, ConfigProvider, Layout, Menu, Typography, Avatar, Dropdown, App } from 'antd';
 import viVN from 'antd/locale/vi_VN';
 import logo from '~/assets/common/logo.webp';
 import ROUTES from '~/config/routes';
+import { logoutAPI } from '~/apis';
+import UserContext from '~/contexts/UserContext';
 
 const { Header, Sider, Content } = Layout;
 
@@ -109,7 +111,10 @@ const configTheme = {
 };
 
 const AdminLayout = ({ children }) => {
+    const navigate = useNavigate();
     const location = useLocation();
+    const { message } = App.useApp();
+    const { logoutUser } = useContext(UserContext);
 
     const [collapsed, setCollapsed] = useState(false);
     const [activeMenu, setActiveMenu] = useState(location.pathname);
@@ -124,9 +129,15 @@ const AdminLayout = ({ children }) => {
     // Xử lý sự kiện cho user dropdown menu
     const handleUserMenuClick = ({ key }) => {
         if (key === 'logout') {
-            // Xử lý đăng xuất
-            console.log('Đăng xuất');
-            // Thêm logic đăng xuất ở đây
+            try {
+                logoutAPI().then(() => {
+                    message.success('Đăng xuất thành công');
+                    navigate('/login');
+                    logoutUser();
+                });
+            } catch (error) {
+                message.error(error.response.data.message);
+            }
         } else if (key === 'profile') {
             // Xử lý xem thông tin tài khoản
             console.log('Xem thông tin tài khoản');

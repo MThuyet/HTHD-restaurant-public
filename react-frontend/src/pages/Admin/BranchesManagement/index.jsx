@@ -9,6 +9,7 @@ import ViewDetailBranch from './ModalBranch/ViewDetailBranch';
 import CreateBranch from './ModalBranch/CreateBranch';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import UpdateBranch from './ModalBranch/UpdateBranch';
+import { DownOutlined, UpOutlined } from '@ant-design/icons';
 
 const BranchesManagement = () => {
     const { message, notification } = App.useApp();
@@ -83,6 +84,7 @@ const BranchesManagement = () => {
                                 try {
                                     await deleteBranchAPI(entity.bra_code);
                                     message.success('Xóa chi nhánh thành công!');
+                                    refreshTable();
                                 } catch (error) {
                                     notification.error({
                                         message: error.response.data.message,
@@ -208,7 +210,20 @@ const BranchesManagement = () => {
                     };
                 }}
                 rowKey="bra_code"
-                search={{ resetText: 'Làm mới', labelWidth: 'auto' }}
+                search={{
+                    resetText: 'Làm mới',
+                    labelWidth: 'auto',
+                    collapseRender: (collapsed) =>
+                        collapsed ? (
+                            <Tooltip title="Thêm">
+                                <DownOutlined />
+                            </Tooltip>
+                        ) : (
+                            <Tooltip title="Đóng">
+                                <UpOutlined />
+                            </Tooltip>
+                        ),
+                }}
                 options={{ fullScreen: true, reload: false }}
                 dateFormatter="string"
                 headerTitle="Danh sách chi nhánh"
