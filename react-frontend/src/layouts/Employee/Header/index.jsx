@@ -1,9 +1,12 @@
 import { useNavigate } from 'react-router-dom';
-import { Segmented, Dropdown, Avatar } from 'antd';
+import { Segmented, Dropdown, Avatar, App } from 'antd';
 import { UserOutlined, SettingOutlined, LogoutOutlined } from '@ant-design/icons';
 
 import logo from '~/assets/common/logo.webp';
 import CurrentTime from '~/components/CurrentTime';
+import { useContext } from 'react';
+import UserContext from '~/contexts/UserContext';
+import { logoutAPI } from '~/apis';
 
 const userMenuItems = [
     {
@@ -26,28 +29,34 @@ const userMenuItems = [
     },
 ];
 
-const handleUserMenuClick = ({ key }) => {
-    if (key === 'logout') {
-        // Xử lý đăng xuất
-        console.log('Đăng xuất');
-        // Thêm logic đăng xuất ở đây
-    } else if (key === 'profile') {
-        // Xử lý xem thông tin tài khoản
-        console.log('Xem thông tin tài khoản');
-    } else if (key === 'settings') {
-        // Xử lý mở cài đặt
-        console.log('Mở cài đặt');
-    }
-};
-
 const Header = ({ navTabs }) => {
-    console.log(navTabs);
-
+    const { logoutUser } = useContext(UserContext);
     const navigate = useNavigate();
+    const { message } = App.useApp();
 
     const handleActive = (value) => {
         if (value) {
             navigate(value);
+        }
+    };
+
+    const handleUserMenuClick = ({ key }) => {
+        if (key === 'logout') {
+            try {
+                logoutAPI().then(() => {
+                    message.success('Đăng xuất thành công');
+                    navigate('/login');
+                    logoutUser();
+                });
+            } catch (error) {
+                message.error(error.response.data.message);
+            }
+        } else if (key === 'profile') {
+            // Xử lý xem thông tin tài khoản
+            console.log('Xem thông tin tài khoản');
+        } else if (key === 'settings') {
+            // Xử lý mở cài đặt
+            console.log('Mở cài đặt');
         }
     };
 
@@ -58,7 +67,12 @@ const Header = ({ navTabs }) => {
                 <h3 className="text-md font-bold">HTHD Restaurant</h3>
             </div>
             <div className="flex items-center gap-4 p-2 rounded-md bg-bgBlue shadow-sm">
-                <Segmented size="large" options={navTabs} onChange={handleActive}></Segmented>
+                <Segmented
+                    size="large"
+                    options={navTabs}
+                    defaultValue={window.location.pathname}
+                    onChange={handleActive}
+                ></Segmented>
             </div>
             <div className="flex items-center gap-4">
                 <CurrentTime />

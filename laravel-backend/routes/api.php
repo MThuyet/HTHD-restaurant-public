@@ -10,7 +10,11 @@ use App\Http\Controllers\Product;
 use App\Http\Controllers\UI;
 use App\Http\Controllers\Auth;
 
+// Auth
 Route::post('/login', [Auth\AuthController::class, 'login']);
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/logout', [Auth\AuthController::class, 'logout']);
+});
 
 // ADMIN private route
 Route::middleware('auth:sanctum', 'check.permission:admin')->group(function () {

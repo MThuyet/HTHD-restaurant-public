@@ -59,4 +59,30 @@ class AuthController extends Controller
             'message' => 'Tên đăng nhập hoặc mật khẩu không chính xác'
         ], 401);
     }
+
+    public function logout(Request $request)
+    {
+        try {
+            // Kiểm tra user đã đăng nhập chưa
+            if (!$request->user()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Bạn chưa đăng nhập'
+                ], 401);
+            }
+
+            // Xóa token hiện tại
+            $request->user()->currentAccessToken()->delete();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Đăng xuất thành công'
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Có lỗi xảy ra khi đăng xuất'
+            ], 500);
+        }
+    }
 }

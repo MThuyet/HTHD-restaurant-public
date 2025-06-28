@@ -175,10 +175,10 @@ const UpdateBranch = ({ isOpen, setIsOpen, refreshTable, data, setDataModalUpdat
                     <Col span={12}>
                         <Form.Item
                             name="frame_code"
-                            label={<span className="!font-semibold">Mã khung giờ</span>}
-                            rules={[{ required: true, message: 'Vui lòng nhập mã khung giờ!' }]}
+                            label={<span className="!font-semibold">Iframe map code</span>}
+                            rules={[{ required: true, message: 'Vui lòng Nhập iframe code!' }]}
                         >
-                            <Input size="large" placeholder="Nhập mã khung giờ" />
+                            <Input size="large" placeholder="Nhập iframe code" />
                         </Form.Item>
                     </Col>
                     <Col span={24}>
