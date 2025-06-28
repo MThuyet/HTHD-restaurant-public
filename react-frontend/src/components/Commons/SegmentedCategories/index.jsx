@@ -9,7 +9,7 @@ const options = categories.map((category) => ({
 }));
 
 const SegmentedCategories = (props) => {
-    const { bgItemSelected, bgContainer, textColor, textSelectedColor, hoverBg, slidingColor } = props;
+    const { bgItemSelected, bgContainer, textColor, textSelectedColor, hoverBg, slidingColor, borderRadius } = props;
     const styleRef = useRef(null);
 
     const customThemes = {
@@ -19,7 +19,7 @@ const SegmentedCategories = (props) => {
                 itemSelectedColor: textSelectedColor || '#fff', // màu chữ khi chọn
                 colorBgLayout: '#fff', // nền ngoài cùng
                 colorText: textColor || '#333', // màu chữ mặc định
-                borderRadius: 12,
+                borderRadius: borderRadius || 12,
                 controlHeight: 35,
                 paddingInline: 10,
             },
